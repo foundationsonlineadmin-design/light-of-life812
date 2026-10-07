@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#4a1e0d">
+  <meta name="description" content="Explore the Bible together, one discovery at a time.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/english-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Light of Life</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Light of Life home"><span class="brand-mark">✦</span><span>LIGHT OF LIFE</span></a>
+      <div class="top-actions">
+        <button id="install-btn" class="install-btn" hidden>Install app</button>
+        <div class="text-size-control"><button id="text-size-toggle" class="text-size-toggle" aria-label="Text size" aria-expanded="false" aria-controls="text-size-panel">Aa</button><div id="text-size-panel" class="text-size-panel" role="group" aria-label="Text size controls" hidden><div class="text-size-panel-title">Text size</div><div class="text-size-buttons"><button id="text-size-decrease" aria-label="Decrease text size">A−</button><output id="text-size-value" aria-live="polite">100%</output><button id="text-size-increase" aria-label="Increase text size">A+</button></div><button id="text-size-reset" class="text-size-reset">Reset</button></div></div>
+        <a class="icon-btn language-shortcut" href="index.html#language" aria-label="Choose language">文</a>
+        <a class="icon-btn tracking-shortcut" href="index.html#progress" aria-label="Your progress"><img src="assets/group-button.png" alt=""></a>
+      </div>
+    </header>
+    <main id="home-page" tabindex="-1"></main>
+    <footer class="site-footer"><span>✦ <b>LIGHT OF LIFE</b></span></footer>
+  </div>
+  <script src="catalog.js"></script>
+  <script src="progress-store.js"></script>
+  <script src="install.js"></script>
+  <script src="home-page.js"></script>
+  <script src="brand-language.js"></script>
+  <script src="text-size.js"></script>
+</body>
+</html>

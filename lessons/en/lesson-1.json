@@ -1,0 +1,47 @@
+{
+  "id": "lesson-1",
+  "number": "1",
+  "title": "God’s Creation",
+  "ref": "Genesis 1:1 to 2:3",
+  "duration": "20 min",
+  "sections": [
+    {
+      "title": "Look Back (Review)",
+      "kind": "review",
+      "paragraphs": [
+        "Pray for one another."
+      ]
+    },
+    {
+      "title": "Look Up (New Teaching)",
+      "kind": "teaching",
+      "paragraphs": [
+        "Read",
+        "The Bible teaches that in the beginning, there was nothing but God. God created everything in the world. He created the sun, moon and stars, plants, animals, and lastly, He created man. He created man different than all the other things. He made the man to have relationship with Him.",
+        "The first man was named Adam and his wife was named Eve. God placed Adam and Eve in a special garden. God had them oversee everything that happened in it. He gave Adam and Eve freedom in the garden. God often came there to spend time with them. This is what the Bible teaches.",
+        "Read",
+        "Let’s read some verses from the Holy Scriptures, the Bible, that relate to this story.",
+        "Genesis 1:1 to 2:3",
+        "Genesis 2:8-9, 2:15-18, 2:21-25",
+        "Read",
+        "These verses teach us a beautiful truth — God didn’t make us to earn peace through our own effort, but to receive rest from Him. God Himself rested, and He wants to give that same peace to every person freely. This kindness is what the Bible calls \"grace.\" It is God's plan for us in Jesus Christ. Jesus Himself is the very Word of God, through whom all things were created good and beautiful in the beginning.",
+        "Ask",
+        "What did you learn from these Scriptures?",
+        "Think a little — how will you practice what you have learned?"
+      ]
+    },
+    {
+      "title": "Look Forward (Obedience)",
+      "kind": "practice",
+      "paragraphs": [
+        "Do",
+        "Next time we see the sun come up, let’s remember that God is the Creator of all things. Let’s thank him for the beauty of his creation!",
+        "Ask",
+        "I hope you enjoyed this story. When can we meet again?",
+        "Do you think someone else should hear this story?"
+      ]
+    }
+  ],
+  "image": "assets/lesson-images/lesson-01-transparent.png",
+  "imageAlt": "God’s Creation"
+}

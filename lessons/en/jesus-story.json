@@ -1,0 +1,47 @@
+{
+  "id": "jesus-story",
+  "number": "Intro",
+  "title": "Jesus’ Story – The Hand Gospel",
+  "ref": "The Hand Gospel",
+  "duration": "15 min",
+  "sections": [
+    {
+      "title": "The Hand Gospel",
+      "kind": "intro",
+      "paragraphs": [
+        "1 — Imagine that this is God... The Bible teaches that in the beginning, God made everything.",
+        "2 — God made people in a special way, so that they could enjoy a peaceful, loving relationship with him",
+        "3 — But the first people sinned by disobeying God. That sin separated all people from God because God is holy.",
+        "4 — In many ways, people have tried to remove their sin and please God. However, there is nothing we can do to remove sin from our hearts.",
+        "5 — Continuing in sin only leads to death.",
+        "6 — But God still loves all people.",
+        "7 — This is why he sent the Lord Jesus Christ - to save people from sin. Jesus lived a perfect life and never sinned,",
+        "8 — but people killed him on the cross. God planned that Jesus would die for our sins as a sacrifice.",
+        "9 — Jesus was buried…",
+        "10 — and rose to life again on the third day.",
+        "11 — When we believe in Jesus as Lord and Savior, he forgives all our sins…",
+        "12 — and restores us to a perfect relationship with God… Would you like to learn more about Jesus?"
+      ]
+    }
+  ],
+  "handGospel": [
+    "1 — Imagine that this is God... The Bible teaches that in the beginning, God made everything.",
+    "2 — God made people in a special way, so that they could enjoy a peaceful, loving relationship with him",
+    "3 — But the first people sinned by disobeying God. That sin separated all people from God because God is holy.",
+    "4 — In many ways, people have tried to remove their sin and please God. However, there is nothing we can do to remove sin from our hearts.",
+    "5 — Continuing in sin only leads to death.",
+    "6 — But God still loves all people.",
+    "7 — This is why he sent the Lord Jesus Christ - to save people from sin. Jesus lived a perfect life and never sinned,",
+    "8 — but people killed him on the cross. God planned that Jesus would die for our sins as a sacrifice.",
+    "9 — Jesus was buried…",
+    "10 — and rose to life again on the third day.",
+    "11 — When we believe in Jesus as Lord and Savior, he forgives all our sins…",
+    "12 — and restores us to a perfect relationship with God… Would you like to learn more about Jesus?"
+  ],
+  "outline": [
+    "Creation",
+    "Sin",
+    "Jesus Christ",
+    "Faith"
+  ]
+}
