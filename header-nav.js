@@ -4,8 +4,8 @@
   const qrButton = document.querySelector('.qr-code-shortcut');
   if (qrButton) {
     const labels = language === 'hi'
-      ? [['lesson-20-part-2', '20.2'], ['lesson-23-part-2', '23.2'], ['lesson-27-part-2', '27.2'], ['church-essentials', '']]
-      : [['lesson-20-part-2', '20.2'], ['lesson-23-part-2', '23.2'], ['lesson-27-part-2', '27.2'], ['church-essentials', '']];
+      ? [['jesus-story', ''], ['lesson-20-part-2', '20.2'], ['lesson-23-part-2', '23.2'], ['lesson-27-part-2', '27.2'], ['church-essentials', '']]
+      : [['jesus-story', ''], ['lesson-20-part-2', '20.2'], ['lesson-23-part-2', '23.2'], ['lesson-27-part-2', '27.2'], ['church-essentials', '']];
     const lessons = window.catalog?.[language]?.lessons || [];
     const shortcut = document.createElement('div');
     shortcut.className = 'lesson-shortcut';
@@ -28,6 +28,25 @@
       link.textContent = `${number ? `${number} · ` : ''}${lesson.title}`;
       menu.append(link);
     }
+    const bibleLink = document.createElement('a');
+    bibleLink.href = `bible.html?lang=${language}`;
+    bibleLink.textContent = language === 'hi' ? 'पूरी बाइबल पढ़ें' : 'Read the whole Bible';
+    menu.append(bibleLink);
+    const platform = [navigator.userAgentData?.platform, navigator.platform, navigator.userAgent].filter(Boolean).join(' ');
+    const isIOS = /iPhone|iPad|iPod/i.test(platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/i.test(platform);
+    const youVersionLink = document.createElement('a');
+    if (isIOS) {
+      youVersionLink.href = 'https://apps.apple.com/app/bible/id282935706';
+      youVersionLink.textContent = language === 'hi' ? 'YouVersion बाइबल ऐप डाउनलोड करें' : 'Get the YouVersion Bible App';
+    } else if (isAndroid) {
+      youVersionLink.href = 'https://play.google.com/store/apps/details?id=com.sirma.mobile.bible.android';
+      youVersionLink.textContent = language === 'hi' ? 'YouVersion बाइबल ऐप डाउनलोड करें' : 'Get the YouVersion Bible App';
+    } else {
+      youVersionLink.href = 'https://www.bible.com/';
+      youVersionLink.textContent = language === 'hi' ? 'YouVersion बाइबल ऑनलाइन खोलें' : 'Open YouVersion Bible online';
+    }
+    menu.append(youVersionLink);
     shortcut.append(button, menu);
     qrButton.parentNode.insertBefore(shortcut, qrButton);
     button.addEventListener('click', () => {
@@ -86,6 +105,7 @@
     const page = location.pathname.split('/').pop();
     const destinations = {
       'lesson.html': `language.html?lang=${language}`,
+      'bible.html': `language.html?lang=${language}`,
       'language.html': `home.html?lang=${language}`,
       'home.html': 'index.html',
       'index.html': `home.html?lang=${language}`

@@ -10,6 +10,10 @@
       "kind": "intro",
       "paragraphs": [
         {
+          "type": "theme",
+          "text": "Creation"
+        },
+        {
           "type": "image",
           "src": "assets/hand-gospel/hand-01.png",
           "alt": "Hand Gospel hand position, step 1"
@@ -21,6 +25,10 @@
           "alt": "Hand Gospel hand position, step 2"
         },
         "2 — God made people in a special way, so that they could enjoy a peaceful, loving relationship with him",
+        {
+          "type": "theme",
+          "text": "Sin"
+        },
         {
           "type": "image",
           "src": "assets/hand-gospel/hand-03.png",
@@ -39,6 +47,10 @@
           "alt": "Hand Gospel hand position, step 5"
         },
         "5 — Continuing in sin only leads to death.",
+        {
+          "type": "theme",
+          "text": "Jesus Christ"
+        },
         {
           "type": "image",
           "src": "assets/hand-gospel/hand-01.png",
@@ -69,6 +81,10 @@
           "alt": "Hand Gospel hand position, step 10"
         },
         "10 — and rose to life again on the third day.",
+        {
+          "type": "theme",
+          "text": "Faith"
+        },
         {
           "type": "image",
           "src": "assets/hand-gospel/hand-10.png",
