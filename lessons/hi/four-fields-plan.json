@@ -1,0 +1,25 @@
+{
+  "id": "four-fields-plan",
+  "number": "Intro",
+  "eyebrow": "अतिरिक्त साधन",
+  "title": "चार खेत योजना",
+  "ref": "",
+  "duration": "",
+  "hidePicture": true,
+  "hideVideo": true,
+  "sections": [
+    {
+      "title": "",
+      "kind": "teaching",
+      "showTitle": false,
+      "paragraphs": [
+        "यह तस्वीर दिखाती है कि \"जीवन की ज्योति\" के पाठ, और इस पुस्तक में बताए गए दूसरे साधन, \"चार खेत\" की सेवकाई रणनीति में कैसे फिट होते हैं।",
+        {
+          "type": "image",
+          "src": "assets/lesson-images/hindi-four-fields-plan.png",
+          "alt": "चार खेत सेवकाई योजना का चित्र"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "church-essentials",
+  "number": "Intro",
+  "eyebrow": "अतिरिक्त साधन",
+  "title": "कलीसिया की आवश्यक बातें",
+  "ref": "पहली कलीसिया · कलीसिया का जीवन और अभ्यास",
+  "duration": "",
+  "hidePicture": true,
+  "hideVideo": true,
+  "sections": [
+    {
+      "title": "",
+      "kind": "teaching",
+      "showTitle": false,
+      "paragraphs": [
+        {
+          "type": "image",
+          "src": "assets/lesson-images/hindi-church-essentials-page-1.png",
+          "alt": "कलीसिया की आवश्यक बातें: पहली कलीसिया का परिचय और कलीसिया के तीन चरण"
+        },
+        {
+          "type": "image",
+          "src": "assets/lesson-images/hindi-church-essentials-page-2.png",
+          "alt": "कलीसिया की आवश्यक बातें: बपतिस्मा और प्रभु भोज"
+        },
+        {
+          "type": "image",
+          "src": "assets/lesson-images/hindi-church-essentials-page-3.png",
+          "alt": "कलीसिया की आवश्यक बातें: कलीसिया की पहचान, अगुवे और वचन सिखाना"
+        },
+        {
+          "type": "image",
+          "src": "assets/lesson-images/hindi-church-essentials-page-4.png",
+          "alt": "कलीसिया की आवश्यक बातें: अनुशासन, प्रेम, आराधना, प्रार्थना, दान और चेले बनाना"
+        }
+      ]
+    }
+  ]
+}

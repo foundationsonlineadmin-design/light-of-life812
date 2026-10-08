@@ -1,13 +1,13 @@
 (() => {
-  const STORAGE_KEY='lol-text-size-v1';
+  const STORAGE_KEY='lol-text-size-v2';
   const root=document.documentElement;
   const panel=document.querySelector('#text-size-panel');
   const toggle=document.querySelector('#text-size-toggle');
   const output=document.querySelector('#text-size-value');
   const excluded=new Set(['SCRIPT','STYLE','LINK','META','HEAD']);
-  let scale=1;
-  try{scale=Number(localStorage.getItem(STORAGE_KEY))||1}catch{}
-  scale=Math.max(.8,Math.min(1.4,scale));
+  let scale=1.3;
+  try{const saved=localStorage.getItem(STORAGE_KEY);if(saved!==null&&Number.isFinite(Number(saved)))scale=Number(saved)}catch{}
+  scale=Math.max(.8,Math.min(1.7,scale));
 
   function capture(elements){
     const prior=root.style.getPropertyValue('--text-scale')||'1';
@@ -45,8 +45,13 @@
     panel.hidden=!open;
     toggle.setAttribute('aria-expanded',String(open));
   });
+  document.addEventListener('click',event=>{
+    if(panel.hidden||panel.contains(event.target)||toggle.contains(event.target))return;
+    panel.hidden=true;
+    toggle.setAttribute('aria-expanded','false');
+  });
   document.querySelector('#text-size-decrease').addEventListener('click',()=>{scale=Math.max(.8,Math.round((scale-.1)*10)/10);update()});
-  document.querySelector('#text-size-increase').addEventListener('click',()=>{scale=Math.min(1.4,Math.round((scale+.1)*10)/10);update()});
-  document.querySelector('#text-size-reset').addEventListener('click',()=>{scale=1;update()});
+  document.querySelector('#text-size-increase').addEventListener('click',()=>{scale=Math.min(1.7,Math.round((scale+.1)*10)/10);update()});
+  document.querySelector('#text-size-reset').addEventListener('click',()=>{scale=1.3;update()});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus()}});
 })();

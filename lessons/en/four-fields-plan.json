@@ -1,0 +1,25 @@
+{
+  "id": "four-fields-plan",
+  "number": "Intro",
+  "eyebrow": "Extra resources",
+  "title": "Four Fields Plan",
+  "ref": "Four Fields ministry strategy",
+  "duration": "",
+  "hidePicture": true,
+  "hideVideo": true,
+  "sections": [
+    {
+      "title": "",
+      "kind": "teaching",
+      "showTitle": false,
+      "paragraphs": [
+        {
+          "type": "image",
+          "src": "assets/lesson-images/english-four-fields-plan.png",
+          "alt": "Four Fields ministry strategy diagram"
+        },
+        "This picture shows how the Jeevan Ki Jyoti lessons and other tools described in this book fit within a Four Fields ministry strategy."
+      ]
+    }
+  ]
+}

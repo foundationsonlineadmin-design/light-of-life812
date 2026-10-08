@@ -9,17 +9,77 @@
       "title": "The Hand Gospel",
       "kind": "intro",
       "paragraphs": [
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-01.png",
+          "alt": "Hand Gospel hand position, step 1"
+        },
         "1 — Imagine that this is God... The Bible teaches that in the beginning, God made everything.",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-02.png",
+          "alt": "Hand Gospel hand position, step 2"
+        },
         "2 — God made people in a special way, so that they could enjoy a peaceful, loving relationship with him",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-03.png",
+          "alt": "Hand Gospel hand position, step 3"
+        },
         "3 — But the first people sinned by disobeying God. That sin separated all people from God because God is holy.",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-04.png",
+          "alt": "Hand Gospel hand position, step 4"
+        },
         "4 — In many ways, people have tried to remove their sin and please God. However, there is nothing we can do to remove sin from our hearts.",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-05.png",
+          "alt": "Hand Gospel hand position, step 5"
+        },
         "5 — Continuing in sin only leads to death.",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-01.png",
+          "alt": "Hand Gospel hand position, step 6"
+        },
         "6 — But God still loves all people.",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-06.png",
+          "alt": "Hand Gospel hand position, step 7"
+        },
         "7 — This is why he sent the Lord Jesus Christ - to save people from sin. Jesus lived a perfect life and never sinned,",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-07.png",
+          "alt": "Hand Gospel hand position, step 8"
+        },
         "8 — but people killed him on the cross. God planned that Jesus would die for our sins as a sacrifice.",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-08.png",
+          "alt": "Hand Gospel hand position, step 9"
+        },
         "9 — Jesus was buried…",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-09.png",
+          "alt": "Hand Gospel hand position, step 10"
+        },
         "10 — and rose to life again on the third day.",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-10.png",
+          "alt": "Hand Gospel hand position, step 11"
+        },
         "11 — When we believe in Jesus as Lord and Savior, he forgives all our sins…",
+        {
+          "type": "image",
+          "src": "assets/hand-gospel/hand-02.png",
+          "alt": "Hand Gospel hand position, step 12"
+        },
         "12 — and restores us to a perfect relationship with God… Would you like to learn more about Jesus?"
       ]
     }

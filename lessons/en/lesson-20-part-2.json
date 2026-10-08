@@ -1,0 +1,77 @@
+{
+  "id": "lesson-20-part-2",
+  "number": "20.2",
+  "eyebrow": "Part 20 · Part 2",
+  "title": "How to Abide in Christ",
+  "ref": "Matthew 5:1–7:29",
+  "duration": "",
+  "sections": [
+    {
+      "title": "Teach",
+      "kind": "teaching",
+      "paragraphs": [
+        "This is a simple way to remember how to abide in Christ. Follow these 5 steps daily when you are alone with the Lord. If your family also believes in Jesus, you can do this as a family.",
+        {
+          "type": "steps",
+          "items": [
+            {
+              "text": "Read the Scripture twice."
+            },
+            {
+              "text": "Ask two questions:",
+              "subitems": [
+                "What did I learn from this Scripture?",
+                "How will I obey what I have learned?"
+              ]
+            },
+            {
+              "text": "Pray through the Scripture."
+            },
+            {
+              "text": "Confess any known sin."
+            },
+            {
+              "text": "Take one truth with you throughout the day."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Make a Plan",
+      "kind": "practice",
+      "paragraphs": [
+        "These scriptures are from a famous teachings of Jesus called the Sermon on the Mount. To practice abiding, study each of these scriptures one at a time by following the 5 steps. Read one passage each day and meditate on it. When you finish this list, continue reading the New Testament and try to read at least one chapter each day.",
+        {
+          "type": "checklist",
+          "items": [
+            "Matthew 5:1-5",
+            "Matthew 5:6-9",
+            "Matthew 5:10-12",
+            "Matthew 5:13-16",
+            "Matthew 5:17-20",
+            "Matthew 5:21-26",
+            "Matthew 5:27-20",
+            "Matthew 5:31-32",
+            "Matthew 5:33-37",
+            "Matthew 5:38-42",
+            "Matthew 5:43-48",
+            "Matthew 6:1-4",
+            "Matthew 6:5-15",
+            "Matthew 6:16-18",
+            "Matthew 6:19-24",
+            "Matthew 6:25-34",
+            "Matthew 7:1-6",
+            "Matthew 7:7-10",
+            "Matthew 7:12-14",
+            "Matthew 7:15-20",
+            "Matthew 7:21-23",
+            "Matthew 7:24-29"
+          ]
+        }
+      ]
+    }
+  ],
+  "image": "assets/lesson-images/hand-numbered.png",
+  "imageAlt": "Numbered hand illustration"
+}

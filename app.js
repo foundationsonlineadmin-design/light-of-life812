@@ -16,6 +16,7 @@ function progressPage() {
   const state = progressStore.getData();
   const group = progressStore.activeGroup(state);
   const completed = Object.entries(group.completed).filter(([key, value]) => value && key.startsWith(`${lang}:`));
+  const nextLesson = data.lessons.find(item => !group.completed[`${lang}:${item.id}`]);
   const hi = lang === 'hi';
   const labels = {
     journey: hi ? 'आपकी यात्रा' : 'Your journey',
@@ -25,9 +26,9 @@ function progressPage() {
     create: hi ? 'नया समूह बनाएँ' : 'Create a group',
     name: hi ? 'समूह का नाम' : 'Group name',
     createButton: hi ? 'समूह बनाएँ' : 'Create group',
-    keep: hi ? 'आगे बढ़ते रहें' : 'Keep discovering',
+    keep: hi ? 'अगला पाठ' : 'Next lesson',
     tracking: hi ? 'समूह' : 'Group',
-    step: hi ? 'हर बातचीत एक नया कदम है।' : 'Every conversation is a step forward.',
+    allDone: hi ? 'इस समूह ने सभी पाठ पूरे कर लिए हैं।' : 'This group has completed every lesson.',
     complete: hi ? 'पूरा हुआ' : 'Completed',
     empty: hi ? 'आपकी पहली खोज प्रतीक्षा कर रही है।' : 'Your first discovery is waiting.',
     chooseLanguage: hi ? 'भाषा चुनें' : 'Choose a language to begin'
@@ -35,8 +36,8 @@ function progressPage() {
   app.innerHTML = `<div class="page-head"><div><span class="eyebrow">${labels.journey}</span><h1 class="${langClass(lang)}">${labels.title}</h1><p class="${langClass(lang)}">${labels.description}</p></div></div>
     <section class="group-manager ${langClass(lang)}"><label for="progress-group-select">${labels.select}</label><select id="progress-group-select" aria-label="${labels.select}">${state.groups.map(item => `<option value="${esc(item.id)}" ${item.id === group.id ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select>
       <details class="group-create"><summary>${labels.create}</summary><form id="create-group-form"><label for="new-group-name">${labels.name}</label><input id="new-group-name" name="name" maxlength="60" required autocomplete="off"><button class="primary-btn" type="submit">${labels.createButton}</button></form></details></section>
-    <section class="progress-summary ${langClass(lang)}"><div><h2>${labels.keep}</h2><p>${labels.tracking}: ${esc(group.name)}</p><p>${labels.step}</p></div><div class="progress-count">${completed.length}<span style="font-size:19px;color:#f5e6d1"> / ${data.lessons.length}</span></div></section>
-    ${completed.length ? `<div class="lesson-list">${completed.map(([key]) => { const id = key.split(':')[1], lesson = data.lessons.find(item => item.id === id); return lesson ? `<a class="lesson-row" href="lesson.html?lang=${lang}&id=${encodeURIComponent(id)}"><span class="lesson-number">✓</span><span><h3 class="${langClass(lang)}">${esc(lesson.title)}</h3><p>${esc(lesson.ref)}</p></span><span class="lesson-meta">${labels.complete}</span></a>` : ''; }).join('')}</div>` : `<div class="empty-note ${langClass(lang)}">${labels.empty}<br><a class="text-link" href="index.html#language">${labels.chooseLanguage} →</a></div>`}`;
+    <section class="progress-summary ${langClass(lang)}"><div><h2>${labels.keep}</h2><p>${labels.tracking}: ${esc(group.name)}</p>${nextLesson ? `<a class="next-lesson-link" href="lesson.html?lang=${lang}&id=${encodeURIComponent(nextLesson.id)}">${esc(nextLesson.title)} →</a>` : `<p class="next-lesson-complete">${labels.allDone}</p>`}</div><div class="progress-count">${completed.length}<span style="font-size:19px;color:#f5e6d1"> / ${data.lessons.length}</span></div></section>
+    ${completed.length ? `<div class="lesson-list">${completed.map(([key]) => { const id = key.split(':')[1], lesson = data.lessons.find(item => item.id === id); return lesson ? `<a class="lesson-row is-done" href="lesson.html?lang=${lang}&id=${encodeURIComponent(id)}"><span class="lesson-number">${lesson.number === 'Intro' ? '✦' : String(lesson.number).padStart(2, '0')}</span><span><h3 class="${langClass(lang)}">${esc(lesson.title)}</h3><p>${esc(lesson.ref)}</p></span><span class="lesson-completion" role="img" aria-label="${labels.complete}" title="${labels.complete}">✓</span></a>` : ''; }).join('')}</div>` : `<div class="empty-note ${langClass(lang)}">${labels.empty}<br><a class="text-link" href="index.html#language">${labels.chooseLanguage} →</a></div>`}`;
 
   document.querySelector('#progress-group-select').addEventListener('change', event => {
     progressStore.setActiveGroup(event.target.value);
@@ -59,6 +60,7 @@ function setInterfaceLanguage(lang, progressView) {
   if (progressLink) progressLink.innerHTML = `<span>◷</span>${hi ? 'प्रगति' : 'Progress'}`;
   document.querySelector('.language-shortcut')?.setAttribute('aria-label', hi ? 'भाषा चुनें' : 'Choose language');
   document.querySelector('.tracking-shortcut')?.setAttribute('aria-label', hi ? 'समूह की प्रगति' : 'Group progress');
+  document.querySelector('#share-btn')?.setAttribute('aria-label', hi ? 'पेज साझा करें' : 'Share this page');
   document.querySelector('.avatar')?.setAttribute('aria-label', hi ? 'आपकी प्रगति' : 'Your progress');
   const install = document.querySelector('#install-btn');
   if (install) install.textContent = hi ? 'ऐप इंस्टॉल करें' : 'Install app';

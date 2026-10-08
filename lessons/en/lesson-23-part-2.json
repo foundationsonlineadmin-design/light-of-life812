@@ -1,0 +1,42 @@
+{
+  "id": "lesson-23-part-2",
+  "number": "23.2",
+  "eyebrow": "Part 23 · Part 2",
+  "title": "My Testimony & Jesus’ Story",
+  "ref": "Testimony and Jesus’ Story",
+  "duration": "",
+  "hidePicture": true,
+  "sections": [
+    {
+      "title": "Teach",
+      "kind": "teaching",
+      "paragraphs": [
+        "Our testimony can open someone’s heart to hear about Jesus, Only Jesus can change a person’s heart! We should use own story to introduce others to Jesus, just like the women at the well did.",
+        "How can we do this? Just remember…",
+        "2 · 3 · 4",
+        "2 — We have two stories to share: My Testimony, and Jesus’ Story.",
+        "3 — My Testimony has 3 parts and 1 question. The 3 parts are written bellow with some examples of how you could start or finish telling each part of your story.",
+        "My life before I chose to follow Jesus",
+        "“One time in my life…”",
+        "How I repented from my sin and believed in Jesus",
+        "“Then God…”",
+        "“I heard about Jesus and began to follow him.”",
+        "How my life changed after I started following Jesus",
+        "“I learned that God is…”",
+        "“Now I have peace. I know I have received salvation.”",
+        "? May I share a story with you about what God has done to save us?",
+        "Keep your testimony short and simple. It should point to Jesus as the Savior — not to any other person. Even a testimony about healing or a miracle should point to Jesus and what He did to free us from sin. Point to Jesus by saying what you've learned about Him since then, and how He changed your heart.",
+        {
+          "type": "image",
+          "src": "assets/lesson-images/english-lesson-23-part-2-testimony-question.png",
+          "alt": "Three circles and a question mark, a conversation prompt for sharing a testimony"
+        },
+        "4 — Jesus’ Story has 4 parts. We call this story the “Hand Gospel” because we use our hand to remember the story. The 4 parts are written below and are on the first pages of this book.",
+        ".Creation. Imagine that this is God... The Bible teaches that in the beginning, God made everything. God made people in a special way, so that they could enjoy a peaceful, loving relationship with him.",
+        ".Sin. But the first people sinned by disobeying God. That sin separated all people from God because God is holy. In many ways, people have tried to remove their sin and please God. However, there is nothing we can do to remove sin from our hearts. Continuing in sin only leads to death.",
+        "..Jesus Christ. But God still loves all people. This is why he sent the Lord Jesus Christ - to save people from sin. Jesus lived a perfect life and never sinned, but people killed him on the cross. God planned that Jesus would die for our sins as a sacrifice. Jesus was buried… and rose to life again on the third day.",
+        ".Faith. When we believe in Jesus as Lord and Savior, he forgives all our sins and restores us to a perfect relationship with God… Would you like to learn more about Jesus?"
+      ]
+    }
+  ]
+}

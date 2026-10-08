@@ -1,0 +1,78 @@
+{
+  "id": "what-next",
+  "number": "Next",
+  "eyebrow": "Next steps",
+  "title": "What Next?",
+  "ref": "Next steps",
+  "duration": "",
+  "hidePicture": true,
+  "hideVideo": true,
+  "sections": [
+    {
+      "title": "",
+      "kind": "teaching",
+      "showTitle": false,
+      "paragraphs": [
+        "Through the lessons in this book, you have taught this group how to become disciples and form a healthy church. If the group has not understood or is not following any lesson, then it is not yet a healthy church. Teach those lessons again, so the group can obey what they have learned and become a healthy church. Here are some examples:",
+        "If you taught the church about pastors (shepherds) in Lesson 33, but no one has been appointed to care for and teach the church, revisit that lesson and guide the church to appoint a pastor.",
+        "If the people are not sharing the gospel with their families, friends, and neighbors, revisit Lesson 23 (Priesthood of All Believers) and Lesson 30 (Go and Make Disciples), then go out together to share the gospel.",
+        "If the people are not abiding in Christ every day, revisit Lesson 20 (Abide in Christ) and make sure everyone understands what it means and how to do it. Encourage them to ask one another each day what they are learning from God's Word.",
+        "The goal of this accountability and encouragement is simple: every group should become a healthy church that obeys God's Word. Once the church is healthy, there are more steps you can take to help local leaders grow in Christ."
+      ]
+    },
+    {
+      "title": "Bible Reading Plan",
+      "kind": "teaching",
+      "paragraphs": [
+        "Encourage all believers to read at least one chapter each day from God’s Word.",
+        "Read 4 chapters a day to finish the whole Bible in one year.",
+        "Or read 2 chapters from the Old Testament and 2 from the New Testament each day — you will read the New Testament twice and half the Old Testament every year."
+      ]
+    },
+    {
+      "title": "1-3-9 Discipleship Groups",
+      "kind": "teaching",
+      "paragraphs": [
+        "Choose 3 new leaders for deeper discipleship. As they grow, have each of them choose 3 more leaders to disciple — and keep the chain going.",
+        {
+          "type": "image",
+          "src": "assets/lesson-images/healthy-church-generations.png",
+          "alt": "Leader growth map showing one leader training leaders two and three, who develop leaders four through seven"
+        }
+      ]
+    },
+    {
+      "title": "Healthy Church Mapping",
+      "kind": "teaching",
+      "paragraphs": [
+        "As new groups start, use Lesson 27, Part 2 to track their health. Give each group a number and help them become healthier."
+      ]
+    },
+    {
+      "title": "Foundations Training",
+      "kind": "teaching",
+      "paragraphs": [
+        "These lessons are for pastors and co-workers who will train new pastors. The focus of this training is on teaching God's Word."
+      ]
+    },
+    {
+      "title": "Sword Questions",
+      "kind": "teaching",
+      "paragraphs": [
+        "This is an important part of Foundations Training. To study the Bible carefully, we will ask 4 questions instead of 2. The name “Sword” comes from Hebrews 4:12.",
+        {
+          "type": "image",
+          "src": "assets/lesson-images/english-lesson-what-next-sword-questions.png",
+          "alt": "Four questions for studying Scripture: what it teaches about God and people, sin to avoid, and commands or examples to follow"
+        }
+      ]
+    },
+    {
+      "title": "Upright Doctrine",
+      "kind": "teaching",
+      "paragraphs": [
+        "After completing Foundations Training, some leaders may continue to Doctrine Training. The focus is on teaching important truths from God's Word."
+      ]
+    }
+  ]
+}

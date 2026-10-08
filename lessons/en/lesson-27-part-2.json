@@ -1,0 +1,33 @@
+{
+  "id": "lesson-27-part-2",
+  "number": "27.2",
+  "eyebrow": "Part 27 · Part 2",
+  "title": "Healthy Church Maps",
+  "ref": "Healthy Church Map",
+  "duration": "",
+  "sections": [
+    {
+      "title": "Healthy Church Maps",
+      "kind": "teaching",
+      "paragraphs": [
+        "This is a Healthy Church Map. Use the questions on the next page to decide if your group is a healthy church. If you agree that your group is a church, fill in the circle on this map. Then tick every symbol that applies to your group. Some symbols appear both inside and outside the circle. Baptism is one example: if someone in your local church can baptize, tick the symbol inside the circle; if only an outsider can baptize, tick the symbol outside the circle. Under the circle, write the location and the leader's name. Above the circle, write the number of people. How can your church become healthier?"
+      ]
+    }
+  ],
+  "image": "assets/lesson-images/healthy-church-maps.png",
+  "imageAlt": "Healthy Church Maps diagram",
+  "images": [
+    {
+      "src": "assets/lesson-images/healthy-church-maps.png",
+      "alt": "Healthy Church Maps diagram"
+    },
+    {
+      "src": "assets/lesson-images/english-healthy-church-tracking.png",
+      "alt": "Healthy Church tracking form"
+    },
+    {
+      "src": "assets/lesson-images/healthy-church-generations.png",
+      "alt": "Church generations map"
+    }
+  ]
+}

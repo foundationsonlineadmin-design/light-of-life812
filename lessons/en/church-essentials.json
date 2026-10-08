@@ -1,0 +1,39 @@
+{
+  "id": "church-essentials",
+  "number": "Intro",
+  "eyebrow": "Extra lessons",
+  "title": "Church Essentials",
+  "ref": "The first church · Church life and practice",
+  "duration": "",
+  "hidePicture": true,
+  "hideVideo": true,
+  "sections": [
+    {
+      "title": "",
+      "kind": "teaching",
+      "showTitle": false,
+      "paragraphs": [
+        {
+          "type": "image",
+          "src": "assets/lesson-images/english-church-essentials-page-1.png",
+          "alt": "Church Essentials: introduction to the first church, its gatherings, and three steps for church meetings"
+        },
+        {
+          "type": "image",
+          "src": "assets/lesson-images/english-church-essentials-page-2.png",
+          "alt": "Church Essentials: baptism and the Lord’s Supper"
+        },
+        {
+          "type": "image",
+          "src": "assets/lesson-images/english-church-essentials-page-3.png",
+          "alt": "Church Essentials: church identity and church leaders"
+        },
+        {
+          "type": "image",
+          "src": "assets/lesson-images/english-church-essentials-page-4.png",
+          "alt": "Church Essentials: teaching, discipline, love, worship, prayer, giving, and making disciples"
+        }
+      ]
+    }
+  ]
+}

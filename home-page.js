@@ -39,12 +39,13 @@ document.querySelector('.topbar .brand').href = `home.html?lang=${lang}`;
 document.querySelector('.topbar .brand').setAttribute('aria-label', copy.brand);
 document.querySelector('.language-shortcut').setAttribute('aria-label', lang === 'hi' ? 'भाषा चुनें' : 'Choose language');
 document.querySelector('.tracking-shortcut')?.setAttribute('aria-label', lang === 'hi' ? 'समूह की प्रगति' : 'Group progress');
+document.querySelector('#share-btn')?.setAttribute('aria-label', lang === 'hi' ? 'पेज साझा करें' : 'Share this page');
 root.innerHTML = `<section class="language-home-hero ${lang === 'hi' ? 'hindi' : ''}">
   <div class="language-home-copy"><span class="eyebrow">${copy.welcome}</span>
   <h1>${copy.title}</h1>
   ${copy.intro ? `<p>${copy.intro}</p>` : ''}
   <a class="primary-btn lessons-entry" href="language.html?lang=${lang}">${copy.lessons}<span aria-hidden="true">→</span></a></div>
-  <img class="language-home-logo" src="${data.logo}" alt="${copy.logoAlt}">
+  <span class="language-home-logo-frame ${lang === 'hi' ? 'hindi-logo' : 'english-logo'}"><img class="language-home-logo" src="${data.logo}" alt="${copy.logoAlt}"></span>
 </section>
 <section class="install-guide ${lang === 'hi' ? 'hindi' : ''}" id="install-instructions">
   <div><span class="eyebrow">${copy.installEyebrow}</span><h2>${copy.installTitle}</h2><p>${copy.installDescription}</p><button class="primary-btn" id="install-guide-btn">${copy.installButton} <span aria-hidden="true">↓</span></button></div>
