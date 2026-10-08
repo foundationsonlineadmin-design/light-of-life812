@@ -1,0 +1,12 @@
+{
+  "name": "जीवन की ज्योति — बाइबल खोज श्रृंखला",
+  "short_name": "जीवन की ज्योति",
+  "description": "मिलकर बाइबल की खोज करें।",
+  "lang": "hi",
+  "start_url": "./home.html?lang=hi",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf7ef",
+  "theme_color": "#4a1e0d",
+  "icons": [{"src": "assets/hindi-logo.png", "sizes": "650x640", "type": "image/png", "purpose": "any"}]
+}
