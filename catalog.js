@@ -8,6 +8,13 @@ window.catalog = {
     "seriesNote": "",
     "lessons": [
       {
+        "id": "jesus-film",
+        "number": "Intro",
+        "title": "The Jesus Film",
+        "ref": "Jesus Film Project",
+        "duration": "128 min"
+      },
+      {
         "id": "jesus-story",
         "number": "Intro",
         "title": "Jesus’ Story – The Hand Gospel",
@@ -322,6 +329,13 @@ window.catalog = {
     "series": "जीवन की ज्योति",
     "seriesNote": "",
     "lessons": [
+      {
+        "id": "jesus-film",
+        "number": "Intro",
+        "title": "यीशु फ़िल्म",
+        "ref": "Jesus Film Project",
+        "duration": "128 मिनट"
+      },
       {
         "id": "jesus-story",
         "number": "Intro",

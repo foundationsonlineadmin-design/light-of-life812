@@ -1,11 +1,32 @@
 const app = document.querySelector('#app');
+const initialLanguage = new URLSearchParams(location.search).get('lang');
+if (initialLanguage === 'hi' || initialLanguage === 'en') progressStore.setLanguage(initialLanguage);
 
 function esc(s = '') {
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 function langClass(lang) { return lang === 'hi' ? 'hindi' : ''; }
+function languageDestination(code) {
+  const returnTo = new URLSearchParams(location.search).get('return');
+  if (!returnTo) return `home.html?lang=${code}`;
+  try {
+    const target = new URL(returnTo, location.href);
+    const page = target.pathname.split('/').pop();
+    if (target.origin !== location.origin) return `home.html?lang=${code}`;
+    if (page === 'index.html') {
+      if (target.hash !== '#progress') return `home.html?lang=${code}`;
+    } else if (!['home.html', 'language.html', 'lesson.html', 'bible.html'].includes(page)) {
+      return `home.html?lang=${code}`;
+    }
+    target.searchParams.delete('return');
+    target.searchParams.set('lang', code);
+    return `${target.pathname}${target.search}${target.hash}`;
+  } catch {
+    return `home.html?lang=${code}`;
+  }
+}
 function languageCard(language, code) {
-  return `<a class="language-card" href="home.html?lang=${code}"><img src="${language.logo}" alt="${esc(language.name)} logo"><span><h3 class="${langClass(code)}">${esc(language.native)}</h3>${language.tagline ? `<p>${esc(language.tagline)}</p>` : ''}</span><span class="card-arrow">›</span></a>`;
+  return `<a class="language-card" data-language="${code}" href="${esc(languageDestination(code))}"><img src="${language.logo}" alt="${esc(language.name)} logo"><span><h3 class="${langClass(code)}">${esc(language.native)}</h3>${language.tagline ? `<p>${esc(language.tagline)}</p>` : ''}</span><span class="card-arrow">›</span></a>`;
 }
 function languagePicker() {
   app.innerHTML = `<div class="page-head"><div><span class="eyebrow">Welcome</span><h1>Choose a language</h1><p>Choose the language you’d like to explore in.</p></div><span class="pill">2 languages available</span></div><div class="language-grid">${['hi', 'en'].map(code => languageCard(catalog[code], code)).join('')}</div>`;
@@ -62,8 +83,6 @@ function setInterfaceLanguage(lang, progressView) {
   document.querySelector('.tracking-shortcut')?.setAttribute('aria-label', hi ? 'समूह की प्रगति' : 'Group progress');
   document.querySelector('#share-btn')?.setAttribute('aria-label', hi ? 'पेज साझा करें' : 'Share this page');
   document.querySelector('.avatar')?.setAttribute('aria-label', hi ? 'आपकी प्रगति' : 'Your progress');
-  const install = document.querySelector('#install-btn');
-  if (install) install.textContent = hi ? 'ऐप इंस्टॉल करें' : 'Install app';
   if (hi) {
     document.querySelector('#text-size-toggle')?.setAttribute('aria-label', 'पाठ का आकार');
     document.querySelector('#text-size-panel')?.setAttribute('aria-label', 'पाठ का आकार नियंत्रित करें');

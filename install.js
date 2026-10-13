@@ -1,17 +1,54 @@
 let deferredInstall = null;
+
+function installPlatform() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'ios';
+  if (/Android/i.test(ua)) return 'android';
+  if (/Macintosh|Mac OS X/i.test(ua)) return 'mac';
+  if (/Windows/i.test(ua)) return 'windows';
+  return 'other';
+}
+
+function openInstallGuidance() {
+  const guide = document.querySelector('#install-instructions');
+  if (!guide) {
+    const lang = new URLSearchParams(location.search).get('lang') === 'hi' ? 'hi' : 'en';
+    location.href = `home.html?lang=${lang}#install-instructions`;
+    return;
+  }
+  const platform = installPlatform();
+  const details = [...guide.querySelectorAll('[data-install-platform]')];
+  const target = details.find(item => item.dataset.installPlatform === platform) || details.find(item => item.dataset.installPlatform === 'other');
+  for (const item of details) item.open = item === target;
+  guide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+async function startInstallFlow() {
+  if (deferredInstall) {
+    const prompt = deferredInstall;
+    deferredInstall = null;
+    try {
+      await prompt.prompt();
+      const choice = await prompt.userChoice;
+    } catch {
+      openInstallGuidance();
+    }
+    return;
+  }
+  openInstallGuidance();
+}
+
+window.openInstallGuidance = openInstallGuidance;
+window.startInstallFlow = startInstallFlow;
+
 window.addEventListener('beforeinstallprompt', event => {
   event.preventDefault();
   deferredInstall = event;
-  const button = document.querySelector('#install-btn');
-  if (button) button.hidden = false;
 });
 
-document.querySelector('#install-btn')?.addEventListener('click', async () => {
-  if (!deferredInstall) return;
-  deferredInstall.prompt();
-  await deferredInstall.userChoice;
+window.addEventListener('appinstalled', () => {
   deferredInstall = null;
-  document.querySelector('#install-btn').hidden = true;
 });
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {

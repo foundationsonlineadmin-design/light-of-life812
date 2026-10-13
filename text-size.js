@@ -1,11 +1,11 @@
 (() => {
-  const STORAGE_KEY='lol-text-size-v2';
+  const STORAGE_KEY='lol-text-size-v3';
   const root=document.documentElement;
   const panel=document.querySelector('#text-size-panel');
   const toggle=document.querySelector('#text-size-toggle');
   const output=document.querySelector('#text-size-value');
   const excluded=new Set(['SCRIPT','STYLE','LINK','META','HEAD']);
-  let scale=1.3;
+  let scale=1;
   try{const saved=localStorage.getItem(STORAGE_KEY);if(saved!==null&&Number.isFinite(Number(saved)))scale=Number(saved)}catch{}
   scale=Math.max(.8,Math.min(1.7,scale));
 
@@ -52,6 +52,6 @@
   });
   document.querySelector('#text-size-decrease').addEventListener('click',()=>{scale=Math.max(.8,Math.round((scale-.1)*10)/10);update()});
   document.querySelector('#text-size-increase').addEventListener('click',()=>{scale=Math.min(1.7,Math.round((scale+.1)*10)/10);update()});
-  document.querySelector('#text-size-reset').addEventListener('click',()=>{scale=1.3;update()});
+  document.querySelector('#text-size-reset').addEventListener('click',()=>{scale=1;update()});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus()}});
 })();

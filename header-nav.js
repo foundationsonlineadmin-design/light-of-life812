@@ -12,7 +12,7 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'icon-btn lesson-shortcut-toggle';
-    button.textContent = '+';
+    button.innerHTML = '<img src="assets/book-button.png" alt="" aria-hidden="true">';
     button.setAttribute('aria-label', language === 'hi' ? 'विशेष पाठ खोलें' : 'Open featured lessons');
     button.setAttribute('aria-expanded', 'false');
     button.setAttribute('aria-haspopup', 'true');
@@ -91,6 +91,19 @@
     dialog.addEventListener('close', () => qrButton.setAttribute('aria-expanded', 'false'));
   }
   const back = document.querySelector('.back-shortcut');
+  const languageShortcut = document.querySelector('.language-shortcut');
+  if (languageShortcut) {
+    const currentPage = location.pathname.split('/').pop();
+    let returnTo = `${location.pathname}${location.search}${location.hash}`;
+    if (currentPage === 'index.html' && location.hash === '#language') {
+      returnTo = new URLSearchParams(location.search).get('return') || '';
+    }
+    const languagePicker = new URL('index.html', location.href);
+    languagePicker.searchParams.set('lang', language);
+    if (returnTo) languagePicker.searchParams.set('return', returnTo);
+    languagePicker.hash = 'language';
+    languageShortcut.href = `${languagePicker.pathname}${languagePicker.search}${languagePicker.hash}`;
+  }
   if (!back) return;
   back.setAttribute('aria-label', isHindi ? 'वापस जाएँ' : 'Go back');
   back.title = isHindi ? 'वापस जाएँ' : 'Go back';

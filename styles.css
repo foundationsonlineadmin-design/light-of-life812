@@ -45,10 +45,10 @@
 
 .qr-code-shortcut svg{display:block;width:19px;height:19px;fill:currentColor}.qr-code-dialog{position:fixed;inset:0;margin:auto;padding:56px 18px 18px;width:min(90vw,460px);max-width:90vw;border:0;border-radius:18px;background:var(--paper);box-shadow:0 18px 55px #0005}.qr-code-dialog::backdrop{background:#1b100bb8;backdrop-filter:blur(2px)}.qr-code-dialog img{display:block;width:100%;height:auto;background:white;border-radius:10px}.qr-code-close{position:absolute;top:10px;right:10px;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:#fffdf9;color:var(--brown);font-size:26px;line-height:1}
 
-.hand-gospel-statement{display:block;margin:0 0 12px;padding:0;background:none;border:0;border-radius:0;color:inherit;font-size:inherit;font-weight:400;line-height:inherit}
+.hand-gospel-statement{display:block;margin:14px 0;padding:14px 18px;background:#f4ead8;border:1px solid #eee0c7;border-radius:14px;color:#82531b;font-size:inherit;font-weight:400;line-height:inherit}.hand-gospel-statement strong{font-weight:800}
 
 .hand-gospel-image img{width:50%;max-height:280px;margin-inline:auto}
-.lesson-shortcut{position:relative;display:grid;place-items:center}.lesson-shortcut-toggle{font-size:24px;line-height:1;font-weight:500}.lesson-shortcut-toggle[aria-expanded="true"]{background:#f3eadb}.lesson-shortcut-menu{position:absolute;z-index:20;top:calc(100% + 10px);right:0;width:min(340px,calc(100vw - 24px));padding:8px;background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.lesson-shortcut-menu[hidden]{display:none}.lesson-shortcut-menu a{display:block;padding:11px 13px;color:var(--brown);text-decoration:none;font-size:14px;font-weight:600;border-radius:9px}.lesson-shortcut-menu a:hover,.lesson-shortcut-menu a:focus-visible{background:#f3eadb;outline:none}
+.lesson-shortcut{position:relative;display:grid;place-items:center}.lesson-shortcut-toggle{display:grid;place-items:center;padding:0}.lesson-shortcut-toggle img{display:block;width:26px;height:26px;object-fit:contain}.lesson-shortcut-toggle[aria-expanded="true"]{background:#f3eadb}.lesson-shortcut-menu{position:absolute;z-index:20;top:calc(100% + 10px);right:0;width:min(340px,calc(100vw - 24px));padding:8px;background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.lesson-shortcut-menu[hidden]{display:none}.lesson-shortcut-menu a{display:block;padding:11px 13px;color:var(--brown);text-decoration:none;font-size:14px;font-weight:600;border-radius:9px}.lesson-shortcut-menu a:hover,.lesson-shortcut-menu a:focus-visible{background:#f3eadb;outline:none}
 .lesson-shortcut-menu{position:fixed;top:84px;left:50%;right:auto;transform:translateX(-50%);width:min(380px,calc(100vw - 24px));max-height:calc(100vh - 100px);overflow-y:auto}.lesson-shortcut-menu a{white-space:normal;overflow-wrap:anywhere;line-height:1.45}
 
 .eyebrow.hindi{letter-spacing:normal;text-transform:none}.site-footer b.hindi{letter-spacing:normal}
@@ -59,3 +59,51 @@
 .lesson-content .content-block .prompt-label{font-size:17px;letter-spacing:.1em}
 .lesson-content .content-block .prompt-label.hindi{font-family:var(--hindi-font);letter-spacing:normal;text-transform:none}
 @media(max-width:760px){.lesson-content .content-block{font-size:19px}}
+
+/* Bring general site copy up to the lesson reading scale without enlarging lesson text twice. */
+body{font-size:20px}
+.hero p{font-size:20px}
+.text-link{font-size:17px}
+.language-card p{font-size:17px}
+.feature strong{font-size:18px}
+.feature span{font-size:16px}
+.pill{font-size:15px}
+.lesson-row h3{font-size:20px}
+.lesson-row p{font-size:17px}
+.lesson-meta{font-size:15px}
+.side-card h3{font-size:22px}
+.side-muted{font-size:15px}
+.site-footer{font-size:15px}
+.install-steps p{font-size:17px}
+.lesson-drawer nav a{font-size:18px}
+.lesson-drawer nav a>span:first-child{font-size:16px}
+.lesson-shortcut-menu a{font-size:18px}
+.bible-reader-controls label{font-size:16px}
+.bible-reader-status{font-size:17px}
+.bible-chapter-content{font-size:20px}
+.bible-reader-verse sup{font-size:14px}
+.bible-reader-subheading{font-size:20px}
+.bible-attribution{font-size:14px}
+@media(max-width:760px){
+  body{font-size:19px}
+  .hero p,.language-home-hero p{font-size:19px}
+  .language-card h3{font-size:21px}
+  .language-card p{font-size:17px}
+  .feature strong{font-size:18px}
+  .feature span{font-size:16px}
+  .site-footer{font-size:14px}
+  .lesson-top .pill{font-size:13px}
+  .lesson-pager a{font-size:15px}
+  .bible-chapter-content{font-size:19px}
+  .bible-reader-pager button{font-size:15px}
+}
+
+/* Jesus Film lesson: official embeddable players and language controls. */
+.jesus-film-block .video-frame{margin:0 0 14px}.film-language-picker{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 10px}.film-language-option{width:auto;min-height:44px;padding:8px 13px;border:1px solid #dcc9aa;border-radius:10px;background:#fffaf2;color:#70451b;font:600 15px/1.3 'DM Sans',sans-serif;cursor:pointer}.film-language-option:hover,.film-language-option:focus-visible{border-color:#a86e22;outline:2px solid #a86e2240;outline-offset:2px}.film-language-option.active{border-color:#70451b;background:#70451b;color:#fff}.film-language-option:disabled{opacity:.5;cursor:not-allowed;text-decoration:line-through}.lesson-content.hindi .film-language-option{font-family:var(--hindi-font);font-weight:600}.film-attribution{margin:12px 0 0;font-size:14px}.film-attribution a{color:#80531c;text-decoration:underline;text-underline-offset:3px}
+
+.language-home-logo-frame{border-color:transparent;background:transparent;box-shadow:none}
+
+.language-home-hero.hindi .eyebrow,.install-guide.hindi .eyebrow{font-family:"Noto Sans Devanagari",Mangal,"Lohit Devanagari",sans-serif;letter-spacing:normal;text-transform:none}.language-home-hero .lessons-entry{font-size:inherit;padding:13px 20px}
+
+.lesson-number-sequence{text-align:center;font-weight:700}
+.hand-gospel-example{margin-left:1.25rem}

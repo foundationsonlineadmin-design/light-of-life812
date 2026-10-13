@@ -1,6 +1,7 @@
 (()=>{
-const API='https://bible.helloao.org/api',params=new URLSearchParams(location.search),lang=params.get('lang')==='hi'?'hi':'en',root=document.querySelector('#bible-reader'),cache=new Map();let translations=[],books=[],translation=null,activeBook=null,activeChapter=1,requestNumber=0;
+const API='https://bible.helloao.org/api',params=new URLSearchParams(location.search),requestedLanguage=params.get('lang'),lang=requestedLanguage==='hi'||requestedLanguage==='en'?requestedLanguage:progressStore.getLanguage(),root=document.querySelector('#bible-reader'),cache=new Map();let translations=[],books=[],translation=null,activeBook=null,activeChapter=1,requestNumber=0;
 const hi=lang==='hi';
+document.documentElement.lang=hi?'hi':'en';progressStore.setLanguage(lang);
 // HelloAO-specific choices. Revisit/remove these filters if the Bible API provider changes.
 const ENGLISH_TRANSLATIONS=['BSB','KJAV','WEB','LSV','BBE'];
 const TRANSLATION_CODES={BSB:/\bBSB\b|BEREAN STANDARD BIBLE/i,KJAV:/\bKJAV\b|\bKJV\b|KING JAMES (AUTHORIZED|AUTHORISED) VERSION/i,WEB:/\bWEB\b|WORLD ENGLISH BIBLE/i,LSV:/\bLSV\b|LEGACY STANDARD VERSION/i,BBE:/\bBBE\b|BIBLE IN BASIC ENGLISH/i,IRV:/\bIRV\b|INDIAN REVISED VERSION/i};

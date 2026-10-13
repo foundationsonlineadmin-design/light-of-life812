@@ -1,4 +1,4 @@
-const root=document.querySelector('#language-page'),params=new URLSearchParams(location.search),lang=params.get('lang')==='hi'?'hi':'en',data=catalog[lang];
+const root=document.querySelector('#language-page'),params=new URLSearchParams(location.search),requestedLanguage=params.get('lang'),lang=requestedLanguage==='hi'||requestedLanguage==='en'?requestedLanguage:progressStore.getLanguage(),data=catalog[lang];
 progressStore.setLanguage(lang);
 const done=progressStore.getProgress();
 function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
