@@ -107,3 +107,7 @@ body{font-size:20px}
 
 .lesson-number-sequence{text-align:center;font-weight:700}
 .hand-gospel-example{margin-left:1.25rem}
+
+.lesson-content{touch-action:pan-y;transition:transform .18s ease,opacity .18s ease;will-change:transform}.lesson-content.swipe-next-leave{transform:translateX(-72px);opacity:0}.lesson-content.swipe-previous-leave{transform:translateX(72px);opacity:0}
+@media(prefers-reduced-motion:reduce){.lesson-content{transition:none}}
+.group-delete{margin-top:2px;grid-column:1/-1}.group-delete summary{color:#9b3326;font-weight:700;cursor:pointer;padding:10px 4px}.group-delete[open]{grid-column:1/-1}.group-delete-content{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:8px}.group-delete-content p{margin:0;color:var(--muted)}.danger-btn{min-height:44px;padding:9px 15px;border:1px solid #bd5848;border-radius:10px;background:#fff5f3;color:#8d271c;font:inherit;font-weight:700;white-space:nowrap}.danger-btn:hover:not(:disabled){background:#f9e3df}.danger-btn:disabled{opacity:.55;cursor:not-allowed}@media(max-width:760px){.group-delete[open]{grid-column:auto}.group-delete-content{align-items:stretch;flex-direction:column}.group-delete-content .danger-btn{width:100%}}

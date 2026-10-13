@@ -37,7 +37,8 @@ function progressPage() {
   const state = progressStore.getData();
   const group = progressStore.activeGroup(state);
   const completed = Object.entries(group.completed).filter(([key, value]) => value && key.startsWith(`${lang}:`));
-  const nextLesson = data.lessons.find(item => !group.completed[`${lang}:${item.id}`]);
+  const trackableLessons = data.lessons.filter(item => !['jesus-film', 'jesus-story'].includes(item.id));
+  const nextLesson = trackableLessons.find(item => !group.completed[`${lang}:${item.id}`]);
   const hi = lang === 'hi';
   const labels = {
     journey: hi ? 'आपकी यात्रा' : 'Your journey',
@@ -45,6 +46,10 @@ function progressPage() {
     description: hi ? 'आपकी पूरी की गई पाठ-यात्रा इस डिवाइस पर सेव है।' : 'Your completed lessons are saved on this device.',
     select: hi ? 'समूह चुनें' : 'Choose group',
     create: hi ? 'नया समूह बनाएँ' : 'Create a group',
+    delete: hi ? 'यह समूह हटाएँ' : 'Delete this group',
+    deleteButton: hi ? 'समूह हटाएँ' : 'Delete group',
+    deleteDefault: hi ? 'डिफ़ॉल्ट समूह हटाया नहीं जा सकता।' : 'The default group cannot be deleted.',
+    confirmDelete: hi ? 'क्या आप समूह “{name}” और उसकी प्रगति हटाना चाहते हैं? यह बदलाव वापस नहीं किया जा सकता।' : 'Delete the group “{name}” and its progress? This cannot be undone.',
     name: hi ? 'समूह का नाम' : 'Group name',
     createButton: hi ? 'समूह बनाएँ' : 'Create group',
     keep: hi ? 'अगला पाठ' : 'Next lesson',
@@ -56,7 +61,8 @@ function progressPage() {
   };
   app.innerHTML = `<div class="page-head"><div><span class="eyebrow">${labels.journey}</span><h1 class="${langClass(lang)}">${labels.title}</h1><p class="${langClass(lang)}">${labels.description}</p></div></div>
     <section class="group-manager ${langClass(lang)}"><label for="progress-group-select">${labels.select}</label><select id="progress-group-select" aria-label="${labels.select}">${state.groups.map(item => `<option value="${esc(item.id)}" ${item.id === group.id ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select>
-      <details class="group-create"><summary>${labels.create}</summary><form id="create-group-form"><label for="new-group-name">${labels.name}</label><input id="new-group-name" name="name" maxlength="60" required autocomplete="off"><button class="primary-btn" type="submit">${labels.createButton}</button></form></details></section>
+      <details class="group-create"><summary>${labels.create}</summary><form id="create-group-form"><label for="new-group-name">${labels.name}</label><input id="new-group-name" name="name" maxlength="60" required autocomplete="off"><button class="primary-btn" type="submit">${labels.createButton}</button></form></details>
+      <details class="group-delete"><summary>${labels.delete}</summary><div class="group-delete-content"><p>${group.id === 'group-default' ? labels.deleteDefault : esc(group.name)}</p><button id="delete-group-btn" class="danger-btn" type="button" ${group.id === 'group-default' || state.groups.length <= 1 ? 'disabled' : ''}>${labels.deleteButton}</button></div></details></section>
     <section class="progress-summary ${langClass(lang)}"><div><h2>${labels.keep}</h2><p>${labels.tracking}: ${esc(group.name)}</p>${nextLesson ? `<a class="next-lesson-link" href="lesson.html?lang=${lang}&id=${encodeURIComponent(nextLesson.id)}">${esc(nextLesson.title)} →</a>` : `<p class="next-lesson-complete">${labels.allDone}</p>`}</div><div class="progress-count">${completed.length}<span style="font-size:19px;color:#f5e6d1"> / ${data.lessons.length}</span></div></section>
     ${completed.length ? `<div class="lesson-list">${completed.map(([key]) => { const id = key.split(':')[1], lesson = data.lessons.find(item => item.id === id); return lesson ? `<a class="lesson-row is-done" href="lesson.html?lang=${lang}&id=${encodeURIComponent(id)}"><span class="lesson-number">${lesson.number === 'Intro' ? '✦' : String(lesson.number).padStart(2, '0')}</span><span><h3 class="${langClass(lang)}">${esc(lesson.title)}</h3><p>${esc(lesson.ref)}</p></span><span class="lesson-completion" role="img" aria-label="${labels.complete}" title="${labels.complete}">✓</span></a>` : ''; }).join('')}</div>` : `<div class="empty-note ${langClass(lang)}">${labels.empty}<br><a class="text-link" href="index.html#language">${labels.chooseLanguage} →</a></div>`}`;
 
@@ -67,6 +73,11 @@ function progressPage() {
   document.querySelector('#create-group-form').addEventListener('submit', event => {
     event.preventDefault();
     if (progressStore.createGroup(document.querySelector('#new-group-name').value)) progressPage();
+  });
+  document.querySelector('#delete-group-btn').addEventListener('click', () => {
+    const selected = progressStore.activeGroup();
+    const prompt = labels.confirmDelete.replace('{name}', selected.name);
+    if (selected.id !== 'group-default' && window.confirm(prompt) && progressStore.deleteGroup(selected.id)) progressPage();
   });
 }
 function setInterfaceLanguage(lang, progressView) {

@@ -59,6 +59,16 @@
     save(data);
     return true;
   }
+  function deleteGroup(id) {
+    const data = getData();
+    if (!id || id === 'group-default' || data.groups.length <= 1) return false;
+    const index = data.groups.findIndex(group => group.id === id);
+    if (index < 0) return false;
+    data.groups.splice(index, 1);
+    if (data.activeGroupId === id) data.activeGroupId = data.groups[0].id;
+    save(data);
+    return true;
+  }
   function getProgress() { return activeGroup().completed; }
   function toggle(key) {
     const data = getData();
@@ -69,5 +79,5 @@
     return !!group.completed[key];
   }
 
-  window.progressStore = { getLanguage, setLanguage, getData, activeGroup, setActiveGroup, createGroup, getProgress, toggle };
+  window.progressStore = { getLanguage, setLanguage, getData, activeGroup, setActiveGroup, createGroup, deleteGroup, getProgress, toggle };
 })();
