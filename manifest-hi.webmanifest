@@ -3,7 +3,7 @@
   "short_name": "जीवन की ज्योति",
   "description": "मिलकर बाइबल की खोज करें।",
   "lang": "hi",
-  "start_url": "./home.html?lang=hi",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#fbf7ef",

@@ -3,7 +3,7 @@
   "short_name": "Light of Life",
   "description": "Explore the Bible together, one discovery at a time.",
   "lang": "en",
-  "start_url": "./home.html?lang=en",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#fbf7ef",

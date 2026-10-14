@@ -25,12 +25,35 @@
       if (!lesson) continue;
       const link = document.createElement('a');
       link.href = `lesson.html?lang=${language}&id=${encodeURIComponent(id)}`;
-      link.textContent = `${number ? `${number} · ` : ''}${lesson.title}`;
+      if (id === 'jesus-story' || id === 'lesson-20-part-2' || id === 'lesson-23-part-2') {
+        link.classList.add('has-lesson-thumb');
+        const image = document.createElement('img');
+        image.className = 'lesson-thumb';
+        image.src = id === 'jesus-story'
+          ? 'assets/lesson-images/hand-gospel-medium-small.png'
+          : id === 'lesson-20-part-2'
+            ? 'assets/lesson-images/20-2-abiding-hand-medium-small.png'
+            : 'assets/lesson-images/testimony.png';
+        image.alt = '';
+        image.setAttribute('aria-hidden', 'true');
+        link.append(image);
+      }
+      const title = document.createElement('span');
+      title.textContent = `${number ? `${number} · ` : ''}${lesson.title}`;
+      link.append(title);
       menu.append(link);
     }
     const bibleLink = document.createElement('a');
     bibleLink.href = `bible.html?lang=${language}`;
-    bibleLink.textContent = language === 'hi' ? 'पूरी बाइबल पढ़ें' : 'Read the whole Bible';
+    bibleLink.classList.add('has-lesson-thumb');
+    const bibleIcon = document.createElement('img');
+    bibleIcon.className = 'lesson-thumb';
+    bibleIcon.src = 'assets/book-button.png';
+    bibleIcon.alt = '';
+    bibleIcon.setAttribute('aria-hidden', 'true');
+    const bibleLabel = document.createElement('span');
+    bibleLabel.textContent = language === 'hi' ? 'पूरी बाइबल पढ़ें' : 'Read the whole Bible';
+    bibleLink.append(bibleIcon, bibleLabel);
     menu.append(bibleLink);
     const platform = [navigator.userAgentData?.platform, navigator.platform, navigator.userAgent].filter(Boolean).join(' ');
     const isIOS = /iPhone|iPad|iPod/i.test(platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
