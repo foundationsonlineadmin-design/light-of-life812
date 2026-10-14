@@ -90,6 +90,24 @@ function setInterfaceLanguage(lang, progressView) {
   const progressLink = document.querySelector('[data-nav="progress"]');
   if (homeLink) homeLink.innerHTML = `<span>⌂</span>${hi ? 'होम' : 'Home'}`;
   if (progressLink) progressLink.innerHTML = `<span>◷</span>${hi ? 'प्रगति' : 'Progress'}`;
+  const footerHome = document.querySelector('[data-footer-home]');
+  const footerDownload = document.querySelector('[data-footer-download]');
+  const footerProgress = document.querySelector('[data-footer-progress]');
+  const footerLang = progressStore.getLanguage();
+  const footerHindi = footerLang === 'hi';
+  if (footerHome) {
+    footerHome.href = `home.html?lang=${footerLang}`;
+    footerHome.innerHTML = `<span aria-hidden="true">⌂</span>${footerHindi ? 'होम' : 'Home'}`;
+  }
+  if (footerDownload) {
+    footerDownload.href = `home.html?lang=${footerLang}#install-instructions`;
+    footerDownload.querySelector('.download-nav-text').textContent = footerHindi ? 'ऐप डाउनलोड करें' : 'Download App';
+  }
+  if (footerProgress) {
+    footerProgress.href = `index.html?lang=${footerLang}#progress`;
+    footerProgress.innerHTML = `<span aria-hidden="true">◷</span>${footerHindi ? 'प्रगति' : 'Progress'}`;
+  }
+  if (nav) nav.hidden = progressView;
   document.querySelector('.language-shortcut')?.setAttribute('aria-label', hi ? 'भाषा चुनें' : 'Choose language');
   document.querySelector('.tracking-shortcut')?.setAttribute('aria-label', hi ? 'समूह की प्रगति' : 'Group progress');
   document.querySelector('#share-btn')?.setAttribute('aria-label', hi ? 'पेज साझा करें' : 'Share this page');
@@ -113,6 +131,7 @@ function setInterfaceLanguage(lang, progressView) {
 function render() {
   const isProgress = location.hash === '#progress';
   if (isProgress) progressPage(); else languagePicker();
+  document.querySelector('#app')?.classList.toggle('language-picker-active', !isProgress);
   const lang = isProgress ? progressStore.getLanguage() : 'en';
   setInterfaceLanguage(lang, isProgress);
   document.querySelectorAll('[data-nav]').forEach(link => link.classList.toggle('active', link.dataset.nav === (isProgress ? 'progress' : 'home')));

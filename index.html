@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script>(()=>{const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;if(!standalone||location.hash)return;try{const lang=localStorage.getItem("lol-discovery-language-v1");if(lang==="hi"||lang==="en")location.replace(`language.html?lang=${lang}`)}catch{}})();</script>
+  <script>(()=>{const standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;if(!standalone||location.hash)return;try{const lang=localStorage.getItem("lol-discovery-language-v1");if(lang==="hi"||lang==="en")location.replace(`home.html?lang=${lang}`)}catch{}})();</script>
   <title>Choose a language — Light of Life</title>
 </head>
 <body>
@@ -28,11 +28,7 @@
         <button class="icon-btn" id="share-btn" aria-label="Share this page">↗</button>
       </div>
     </header>
-    <main id="app" tabindex="-1"></main>
-    <nav class="bottom-nav" aria-label="Main navigation">
-      <a href="index.html" data-nav="home"><span>⌂</span>Home</a>
-      <a href="#progress" data-nav="progress"><span>◷</span>Progress</a>
-    </nav>
+    <main id="app" tabindex="-1"></main><nav class="bottom-nav language-bottom-nav" id="language-footer-nav" aria-label="Main navigation"><a href="home.html" data-footer-home><span aria-hidden="true">⌂</span>Home</a><a href="home.html#install-instructions" data-footer-download><span class="download-nav-icon" aria-hidden="true">↓</span><span class="download-nav-text">Download App</span></a><a href="index.html#progress" data-footer-progress><span aria-hidden="true">◷</span>Progress</a></nav>
     <footer class="site-footer"><span>✦ <b>LIGHT OF LIFE</b></span></footer>
   </div>
   <script src="catalog.js"></script>

@@ -118,4 +118,4 @@ body{font-size:20px}
 
 .lesson-play-icon{display:block;width:56px;height:56px;overflow:visible;fill:none;stroke:var(--brown);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.lesson-play-icon path{fill:var(--brown);stroke:none}.lesson-drawer nav .lesson-play-icon{width:36px;height:36px}@media(max-width:760px){.lesson-play-icon{width:48px;height:48px}}
 
-.download-nav-icon{display:grid!important;place-items:center;width:46px;height:46px;margin-bottom:2px;border:2px solid var(--gold);border-radius:50%;background:#fffaf1;color:var(--brown);font-size:25px!important;line-height:1}.bottom-nav a .download-nav-text{font-size:10px;white-space:nowrap}@media(max-width:760px){#language-page{padding-bottom:88px}}
+.download-nav-icon{display:grid!important;place-items:center;width:46px;height:46px;margin-bottom:2px;border:2px solid var(--gold);border-radius:50%;background:#fffaf1;color:var(--brown);font-size:25px!important;line-height:1}.bottom-nav a .download-nav-text{font-size:10px;white-space:nowrap}.bottom-nav[hidden]{display:none!important}@media(max-width:760px){#app.language-picker-active{padding-bottom:88px}}
