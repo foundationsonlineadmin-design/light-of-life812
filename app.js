@@ -7,24 +7,26 @@ function esc(s = '') {
 }
 function langClass(lang) { return lang === 'hi' ? 'hindi' : ''; }
 function languageDestination(code) {
+  const homeDestination = () => `home.html?lang=${code}&language-choice=1`;
   const returnTo = new URLSearchParams(location.search).get('return');
-  if (!returnTo) return `home.html?lang=${code}`;
+  if (!returnTo) return homeDestination();
   try {
     const target = new URL(returnTo, location.href);
     const page = target.pathname.split('/').pop();
-    if (target.origin !== location.origin) return `home.html?lang=${code}`;
+    if (target.origin !== location.origin) return homeDestination();
     if (page === 'index.html') {
-      if (target.hash !== '#progress') return `home.html?lang=${code}`;
+      if (target.hash !== '#progress') return homeDestination();
     } else if (!['home.html', 'language.html', 'lesson.html', 'bible.html'].includes(page)) {
-      return `home.html?lang=${code}`;
+      return homeDestination();
     }
     target.searchParams.delete('return');
     target.searchParams.set('lang', code);
+    if (page === 'home.html') target.searchParams.set('language-choice', '1');
     // Use the app-relative filename: saved return paths may contain an old
     // local filesystem prefix such as /Users/.../outputs/.
     return `${page}${target.search}${target.hash}`;
   } catch {
-    return `home.html?lang=${code}`;
+    return homeDestination();
   }
 }
 function languageCard(language, code) {
