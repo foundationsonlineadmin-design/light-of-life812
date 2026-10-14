@@ -20,7 +20,9 @@ function languageDestination(code) {
     }
     target.searchParams.delete('return');
     target.searchParams.set('lang', code);
-    return `${target.pathname}${target.search}${target.hash}`;
+    // Use the app-relative filename: saved return paths may contain an old
+    // local filesystem prefix such as /Users/.../outputs/.
+    return `${page}${target.search}${target.hash}`;
   } catch {
     return `home.html?lang=${code}`;
   }

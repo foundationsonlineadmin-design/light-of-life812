@@ -117,7 +117,7 @@
   const languageShortcut = document.querySelector('.language-shortcut');
   if (languageShortcut) {
     const currentPage = location.pathname.split('/').pop();
-    let returnTo = `${location.pathname}${location.search}${location.hash}`;
+    let returnTo = `${currentPage}${location.search}${location.hash}`;
     if (currentPage === 'index.html' && location.hash === '#language') {
       returnTo = new URLSearchParams(location.search).get('return') || '';
     }
