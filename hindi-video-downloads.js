@@ -1,15 +1,13 @@
 (() => {
-  const CACHE_NAME = 'light-of-life-hindi-video-downloads-v1';
+  const CACHE_NAME = 'light-of-life-hindi-video-downloads-v4';
   const VIDEO_COUNT = 15;
-  const VIDEO_SIZES = [87342505, 84835795, 66013099, 71099311, 83125327, 61472473, 70688477, 90078932, 116768837, 79194718, 67471984, 100943451, 71358776, 101320944, 67860333];
   const videos = Array.from({ length: VIDEO_COUNT }, (_, index) => {
     const number = index + 1;
-    const filename = `Hindi${String(number).padStart(2, '0')}-fast.mp4`;
+    const filename = `JKJ-${String(number).padStart(2, '0')}.mp4`;
     return {
       number,
       filename,
-      size: VIDEO_SIZES[index],
-      url: `https://hindi-files.lightoflife812.com/Hi1-15/${filename}`
+      url: `https://files.lightoflife812.com/JKJ-Hindi/${filename}`
     };
   });
   const objectUrls = new Map();
@@ -59,7 +57,7 @@
   }
 
   async function checkStorageForVideos(missingVideos) {
-    if (!navigator.storage?.estimate || !missingVideos.length) return null;
+    if (!navigator.storage?.estimate || !missingVideos.length || missingVideos.some(video => !video.size)) return null;
     try {
       const { quota, usage = 0 } = await navigator.storage.estimate();
       if (!quota) return null;
@@ -105,6 +103,17 @@
     return `<div class="hindi-video-download-manager lesson-video-download" data-individual-video-download data-video-number="${number}"><button class="secondary-btn hindi" type="button" data-individual-video-button>${downloadButtonMarkup('वीडियो डाउनलोड करें')}</button><progress max="100" value="0" data-individual-video-progress hidden></progress><p class="hindi" role="status" aria-live="polite" data-individual-video-status></p></div>`;
   }
 
+  function addDirectDownloadLink(status, url, label) {
+    const link = document.createElement('a');
+    link.className = 'video-direct-download-link';
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.download = url.split('/').pop();
+    link.textContent = label;
+    status.append(document.createElement('br'), link);
+  }
+
   function initIndividualDownloadButtons(root = document) {
     root.querySelectorAll('[data-individual-video-download]').forEach(manager => {
       if (manager.dataset.initialized === 'true') return;
@@ -115,13 +124,16 @@
       const progress = manager.querySelector('[data-individual-video-progress]');
       const status = manager.querySelector('[data-individual-video-status]');
       const frame = manager.parentElement.querySelector(`.video-frame[data-youtube-video-id]`);
-      const paintState = async (message = '') => {
+      const paintState = async (message = '', directDownload = false) => {
         try {
           const cache = await openCache();
           const downloaded = !!(video && await cache.match(video.url));
           button.disabled = false;
           setDownloadButton(button, downloaded ? 'डाउनलोड किया गया वीडियो हटाएँ' : 'वीडियो डाउनलोड करें', downloaded);
-          if (message) status.textContent = message;
+          if (message) {
+            status.textContent = message;
+            if (directDownload) addDirectDownloadLink(status, video.url, 'ऐप के बाहर सीधे डाउनलोड करें ↗');
+          }
           else status.textContent = downloaded ? 'यह वीडियो इस डिवाइस पर उपलब्ध है।' : '';
         } catch {
           button.disabled = true;
@@ -181,7 +193,7 @@
         } catch (error) {
           console.warn(`Hindi lesson video ${number} was not cached.`, error);
           progress.hidden = true;
-          await paintState(downloadFailureMessage(withDownloadStage(error, error?.downloadStage || failureStage), video.filename));
+          await paintState(downloadFailureMessage(withDownloadStage(error, error?.downloadStage || failureStage), video.filename), true);
         }
       });
 
@@ -214,6 +226,12 @@
     frame.replaceChildren(player);
   }
 
+  function initDirectDownloadPage() {
+    const list = document.querySelector('#direct-video-download-list');
+    if (!list) return;
+    list.innerHTML = videos.map(video => `<li><span>पाठ ${video.number}</span><a href="${video.url}" target="_blank" rel="noopener noreferrer" download="${video.filename}">वीडियो डाउनलोड करें <span aria-hidden="true">↗</span></a></li>`).join('');
+  }
+
   function initDownloadManager() {
     const manager = document.querySelector('#hindi-video-download-manager');
     if (!manager) return;
@@ -222,7 +240,7 @@
     const status = manager.querySelector('#hindi-video-download-status');
     let cacheAvailable = true;
 
-    const paintState = async (message = '') => {
+    const paintState = async (message = '', directDownload = false) => {
       try {
         const cache = await openCache();
         const downloaded = await getDownloadedNumbers(cache);
@@ -234,8 +252,18 @@
           : count
             ? `बाकी वीडियो डाउनलोड करें (${count}/${VIDEO_COUNT})`
             : 'वीडियो डाउनलोड करें (1–15)', removeAll);
-        if (message) status.textContent = message;
-        else status.textContent = count === VIDEO_COUNT
+        if (message) {
+          status.textContent = message;
+          if (directDownload) {
+            const link = document.createElement('a');
+            link.className = 'video-direct-download-link';
+            link.href = 'hindi-video-downloads.html?lang=hi';
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = 'वीडियो ऐप के बाहर डाउनलोड करें ↗';
+            status.append(document.createElement('br'), link);
+          }
+        } else status.textContent = count === VIDEO_COUNT
           ? 'सभी 15 वीडियो इस डिवाइस पर उपलब्ध हैं।'
           : count
             ? `${VIDEO_COUNT} में से ${count} वीडियो इस डिवाइस पर उपलब्ध हैं।`
@@ -336,7 +364,7 @@
         if (failed.length) {
           const numbers = failed.map(item => item.number).join(', ');
           const reason = downloadFailureMessage(failed[0].error, failed[0].filename);
-          await paintState(`कुछ वीडियो डाउनलोड नहीं हुए (${numbers}). ${reason}`);
+          await paintState(`कुछ वीडियो डाउनलोड नहीं हुए (${numbers}). ${reason}`, true);
         } else {
           progress.hidden = true;
           await paintState('सभी 15 वीडियो इस डिवाइस पर डाउनलोड हो गए हैं।');
@@ -358,6 +386,8 @@
     createLocalVideoUrl,
     downloadButtonMarkup,
     individualDownloadMarkup,
-    initIndividualDownloadButtons
+    initIndividualDownloadButtons,
+    initDirectDownloadPage
   };
+  initDirectDownloadPage();
 })();
