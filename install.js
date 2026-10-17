@@ -53,13 +53,10 @@ window.addEventListener('appinstalled', () => {
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   let registration = null;
-  let lastUpdateCheck = 0;
   let updateCheckInFlight = false;
 
   async function refreshServiceWorker() {
     if (!registration || document.visibilityState === 'hidden' || updateCheckInFlight) return;
-    if (Date.now() - lastUpdateCheck < 30_000) return;
-    lastUpdateCheck = Date.now();
     updateCheckInFlight = true;
     try {
       await registration.update();
@@ -81,6 +78,9 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
 
   // Check after navigation, browser back/forward restoration, or returning to the app.
   window.addEventListener('pageshow', refreshServiceWorker);
+  window.addEventListener('hashchange', refreshServiceWorker);
+  window.addEventListener('popstate', refreshServiceWorker);
+  window.addEventListener('focus', refreshServiceWorker);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') refreshServiceWorker();
   });
