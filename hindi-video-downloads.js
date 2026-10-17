@@ -155,7 +155,7 @@
           progress.hidden = false;
           progress.value = 0;
           status.textContent = 'वीडियो डाउनलोड हो रहा है…';
-          const response = await fetch(video.url, { mode: 'cors', credentials: 'omit' });
+          const response = await fetch(video.url, { mode: 'cors', credentials: 'omit', cache: 'no-store' });
           if (!response.ok || response.type === 'opaque') throw new Error(`HTTP ${response.status || 'response unavailable'}`);
           const contentLength = Number(response.headers.get('content-length')) || 0;
           if (!contentLength) progress.removeAttribute('value');
@@ -292,7 +292,7 @@
 
           let failureStage = 'fetch';
           try {
-            const response = await fetch(video.url, { mode: 'cors', credentials: 'omit' });
+            const response = await fetch(video.url, { mode: 'cors', credentials: 'omit', cache: 'no-store' });
             if (!response.ok || response.type === 'opaque') {
               throw new Error(`HTTP ${response.status || 'response unavailable'}`);
             }
