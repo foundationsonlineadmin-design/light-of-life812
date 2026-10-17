@@ -4,10 +4,8 @@ const lang = requestedLanguage === 'hi' || requestedLanguage === 'en' ? requeste
 const data = catalog[lang];
 progressStore.setLanguage(lang);
 const copy = lang === 'hi' ? {
-  welcome: 'आपका स्वागत है',
   title: 'जीवन की ज्योति',
   lessons: 'पाठ शुरू करें',
-  installEyebrow: 'अपने साथ रखें',
   installTitle: 'ऐप इंस्टॉल करें',
   installDescription: 'अपने डिवाइस के लिए निर्देश देखने हेतु नीचे चुनें।',
   installButton: 'ऐप इंस्टॉल करें',
@@ -25,10 +23,8 @@ const copy = lang === 'hi' ? {
   brand: 'जीवन की ज्योति',
   documentTitle: 'जीवन की ज्योति — बाइबल खोज श्रृंखला'
 } : {
-  welcome: 'Welcome',
   title: 'Light of Life',
   lessons: 'Start lessons',
-  installEyebrow: 'Take it with you',
   installTitle: 'Install Light of Life',
   installDescription: 'Choose your device below for installation steps.',
   installButton: 'Install app',
@@ -54,14 +50,13 @@ document.querySelector('.language-shortcut').setAttribute('aria-label', lang ===
 document.querySelector('.tracking-shortcut')?.setAttribute('aria-label', lang === 'hi' ? 'समूह की प्रगति' : 'Group progress');
 document.querySelector('#share-btn')?.setAttribute('aria-label', lang === 'hi' ? 'पेज साझा करें' : 'Share this page');
 root.innerHTML = `<section class="language-home-hero ${lang === 'hi' ? 'hindi' : ''}">
-  <div class="language-home-copy"><span class="eyebrow">${copy.welcome}</span>
-  <h1>${copy.title}</h1>
+  <div class="language-home-copy"><h1>${copy.title}</h1>
   ${copy.intro ? `<p>${copy.intro}</p>` : ''}
   <a class="primary-btn lessons-entry" href="language.html?lang=${lang}">${copy.lessons}<span aria-hidden="true">→</span></a></div>
   <span class="language-home-logo-frame ${lang === 'hi' ? 'hindi-logo' : 'english-logo'}"><img class="language-home-logo" src="${data.logo}" alt="${copy.logoAlt}"></span>
 </section>
 <section class="install-guide ${lang === 'hi' ? 'hindi' : ''}" id="install-instructions">
-  <div><span class="eyebrow">${copy.installEyebrow}</span><h2>${copy.installTitle}</h2><p>${copy.installDescription}</p><button class="primary-btn" id="install-guide-btn">${copy.installButton} <span aria-hidden="true">↓</span></button></div>
+  <div><h2>${copy.installTitle}</h2><p>${copy.installDescription}</p><button class="primary-btn" id="install-guide-btn">${copy.installButton} <span aria-hidden="true">↓</span></button></div>
   <div class="install-steps"><details data-install-platform="android"><summary>${copy.android}</summary><p>${copy.androidSteps}</p></details><details data-install-platform="windows"><summary>${copy.windows}</summary><p>${copy.windowsSteps}</p></details><details data-install-platform="mac"><summary>${copy.mac}</summary><p>${copy.macSteps}</p></details><details data-install-platform="ios"><summary>${copy.apple}</summary><p>${copy.appleSteps}</p></details><details data-install-platform="other"><summary>${copy.other}</summary><p>${copy.otherSteps}</p></details></div>
 </section>`;
 if (lang === 'hi') {
