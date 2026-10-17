@@ -1,12 +1,14 @@
 (() => {
   const CACHE_NAME = 'light-of-life-hindi-video-downloads-v1';
   const VIDEO_COUNT = 15;
+  const VIDEO_SIZES = [87342505, 84835795, 66013099, 71099311, 83125327, 61472473, 70688477, 90078932, 116768837, 79194718, 67471984, 100943451, 71358776, 101320944, 67860333];
   const videos = Array.from({ length: VIDEO_COUNT }, (_, index) => {
     const number = index + 1;
     const filename = `Hindi${String(number).padStart(2, '0')}-fast.mp4`;
     return {
       number,
       filename,
+      size: VIDEO_SIZES[index],
       url: `https://hindi-files.lightoflife812.com/Hi1-15/${filename}`
     };
   });
@@ -28,6 +30,38 @@
   function setDownloadButton(button, label, removing = false) {
     button.innerHTML = downloadButtonMarkup(label, removing);
     button.classList.toggle('is-remove-download', removing);
+  }
+
+  function downloadFailureMessage(error, filename = 'वीडियो') {
+    const errorName = error?.name || '';
+    const message = error?.message || '';
+    const status = message.match(/HTTP (\d{3})/)?.[1];
+    if (errorName === 'QuotaExceededError') return 'डिवाइस में वीडियो सहेजने के लिए पर्याप्त जगह नहीं है। जगह खाली करके फिर प्रयास करें।';
+    if (status === '404') return `R2 में ${filename} नहीं मिली (HTTP 404)। फ़ाइल का नाम और फ़ोल्डर जाँचें।`;
+    if (status === '403') return `R2 ने ${filename} तक पहुँच रोक दी (HTTP 403)। सार्वजनिक पहुँच जाँचें।`;
+    if (status) return `${filename} डाउनलोड नहीं हुई (HTTP ${status})।`;
+    if (errorName === 'TypeError') return 'वीडियो नहीं मिल सका। इंटरनेट कनेक्शन और R2 CORS अनुमति जाँचें।';
+    return `वीडियो सहेजने में त्रुटि${errorName ? ` (${errorName})` : ''}${message ? `: ${message}` : ''}`;
+  }
+
+  function formatStorage(bytes) {
+    return `${(bytes / 1e9).toFixed(2)} GB`;
+  }
+
+  async function checkStorageForVideos(missingVideos) {
+    if (!navigator.storage?.estimate || !missingVideos.length) return null;
+    try {
+      const { quota, usage = 0 } = await navigator.storage.estimate();
+      if (!quota) return null;
+      const available = Math.max(0, quota - usage);
+      const needed = missingVideos.reduce((total, video) => total + video.size, 0) * 1.05;
+      if (available < needed) {
+        return `इन ${missingVideos.length} वीडियो के लिए लगभग ${formatStorage(needed)} जगह चाहिए, लेकिन ब्राउज़र में लगभग ${formatStorage(available)} जगह उपलब्ध है। कुछ वीडियो हटाएँ या कम वीडियो डाउनलोड करें।`;
+      }
+    } catch {
+      // Storage estimates are advisory; let the download attempt provide the actual error.
+    }
+    return null;
   }
 
   async function getDownloadedNumbers(cache) {
@@ -134,7 +168,7 @@
         } catch (error) {
           console.warn(`Hindi lesson video ${number} was not cached.`, error);
           progress.hidden = true;
-          await paintState('डाउनलोड नहीं हो सका। इंटरनेट, डिवाइस की जगह और R2 CORS सेटिंग जाँचें।');
+          await paintState(downloadFailureMessage(error, video.filename));
         }
       });
 
@@ -223,6 +257,14 @@
           return;
         }
 
+        const missingVideos = videos.filter(video => !downloaded.has(video.number));
+        const storageWarning = await checkStorageForVideos(missingVideos);
+        if (storageWarning) {
+          progress.hidden = true;
+          await paintState(storageWarning);
+          return;
+        }
+
         progress.hidden = false;
         progress.max = VIDEO_COUNT * 100;
         progress.value = downloaded.size * 100;
@@ -269,13 +311,15 @@
             progress.value = finishedCount * 100;
           } catch (error) {
             console.warn(`Hindi lesson video ${video.number} was not cached.`, error);
-            failed.push(video.number);
+            failed.push({ number: video.number, error, filename: video.filename });
           }
         }
 
         progress.value = downloaded.size * 100;
         if (failed.length) {
-          await paintState(`कुछ वीडियो डाउनलोड नहीं हुए (${failed.join(', ')}). इंटरनेट, डिवाइस की जगह और R2 CORS सेटिंग जाँचकर फिर प्रयास करें।`);
+          const numbers = failed.map(item => item.number).join(', ');
+          const reason = downloadFailureMessage(failed[0].error, failed[0].filename);
+          await paintState(`कुछ वीडियो डाउनलोड नहीं हुए (${numbers}). ${reason}`);
         } else {
           progress.hidden = true;
           await paintState('सभी 15 वीडियो इस डिवाइस पर डाउनलोड हो गए हैं।');
@@ -283,7 +327,7 @@
       } catch (error) {
         console.warn('Hindi lesson video downloads could not be started.', error);
         progress.hidden = true;
-        await paintState('डाउनलोड शुरू नहीं हो सके। इंटरनेट, डिवाइस की जगह और R2 CORS सेटिंग जाँचें।');
+        await paintState(downloadFailureMessage(error));
       } finally {
         if (cacheAvailable) button.disabled = false;
       }
