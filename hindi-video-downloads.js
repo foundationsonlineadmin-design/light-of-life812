@@ -40,8 +40,18 @@
     if (status === '404') return `R2 में ${filename} नहीं मिली (HTTP 404)। फ़ाइल का नाम और फ़ोल्डर जाँचें।`;
     if (status === '403') return `R2 ने ${filename} तक पहुँच रोक दी (HTTP 403)। सार्वजनिक पहुँच जाँचें।`;
     if (status) return `${filename} डाउनलोड नहीं हुई (HTTP ${status})।`;
+    if (error?.downloadStage === 'cache-write') return `${filename} इंटरनेट से आ गई, लेकिन ब्राउज़र उसे डिवाइस पर सहेज नहीं सका${errorName ? ` (${errorName})` : ''}${message ? `: ${message}` : ''}। डिवाइस की उपलब्ध जगह जाँचें।`;
+    if (error?.downloadStage === 'response-read') return `${filename} का डाउनलोड बीच में रुक गया${errorName ? ` (${errorName})` : ''}${message ? `: ${message}` : ''}। कनेक्शन स्थिर होने पर फिर प्रयास करें।`;
+    if (error?.downloadStage === 'fetch' && errorName === 'TypeError') return `R2 से ${filename} का अनुरोध पूरा नहीं हुआ। नेटवर्क, DNS और ऐप के CORS origin की जाँच करें।`;
     if (errorName === 'TypeError') return 'वीडियो नहीं मिल सका। इंटरनेट कनेक्शन और R2 CORS अनुमति जाँचें।';
     return `वीडियो सहेजने में त्रुटि${errorName ? ` (${errorName})` : ''}${message ? `: ${message}` : ''}`;
+  }
+
+  function withDownloadStage(error, stage) {
+    const wrapped = new Error(error?.message || String(error));
+    wrapped.name = error?.name || 'Error';
+    wrapped.downloadStage = stage;
+    return wrapped;
   }
 
   function formatStorage(bytes) {
@@ -123,6 +133,7 @@
         if (button.disabled || !video) return;
         button.disabled = true;
         let cache;
+        let failureStage = 'fetch';
         try {
           cache = await openCache();
           const existing = await cache.match(video.url);
@@ -153,6 +164,7 @@
           if (response.body) {
             const reader = response.body.getReader();
             let received = 0;
+            failureStage = 'response-read';
             while (true) {
               const { done, value } = await reader.read();
               if (done) break;
@@ -160,15 +172,16 @@
               if (contentLength) progress.value = Math.min(received / contentLength, 1) * 100;
             }
           }
+          failureStage = 'cache-write';
           await writeResponse;
-          if (cacheError) throw cacheError;
+          if (cacheError) throw withDownloadStage(cacheError, 'cache-write');
           progress.value = 100;
           if (frame) await showLocalVideo(frame, number);
           await paintState('वीडियो इस डिवाइस पर डाउनलोड हो गया है।');
         } catch (error) {
           console.warn(`Hindi lesson video ${number} was not cached.`, error);
           progress.hidden = true;
-          await paintState(downloadFailureMessage(error, video.filename));
+          await paintState(downloadFailureMessage(withDownloadStage(error, error?.downloadStage || failureStage), video.filename));
         }
       });
 
@@ -277,6 +290,7 @@
           status.textContent = `${video.number}/${VIDEO_COUNT} वीडियो डाउनलोड हो रहा है…`;
           progress.value = finishedCount * 100;
 
+          let failureStage = 'fetch';
           try {
             const response = await fetch(video.url, { mode: 'cors', credentials: 'omit' });
             if (!response.ok || response.type === 'opaque') {
@@ -289,11 +303,12 @@
 
             let cacheError = null;
             const writeResponse = cache.put(video.url, response.clone()).catch(error => {
-              cacheError = error;
+              cacheError = withDownloadStage(error, 'cache-write');
             });
             if (response.body) {
               const reader = response.body.getReader();
               let received = 0;
+              failureStage = 'response-read';
               while (true) {
                 const { done, value } = await reader.read();
                 if (done) break;
@@ -304,6 +319,7 @@
                 }
               }
             }
+            failureStage = 'cache-write';
             await writeResponse;
             if (cacheError) throw cacheError;
             downloaded.add(video.number);
@@ -311,7 +327,8 @@
             progress.value = finishedCount * 100;
           } catch (error) {
             console.warn(`Hindi lesson video ${video.number} was not cached.`, error);
-            failed.push({ number: video.number, error, filename: video.filename });
+            const stageError = withDownloadStage(error, error?.downloadStage || failureStage);
+            failed.push({ number: video.number, error: stageError, filename: video.filename });
           }
         }
 
