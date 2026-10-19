@@ -13,12 +13,12 @@
       "kind": "teaching",
       "showTitle": false,
       "paragraphs": [
+        "This picture shows how the Jeevan Ki Jyoti lessons and other tools described in this book fit within a Four Fields ministry strategy.",
         {
           "type": "image",
           "src": "assets/lesson-images/english-four-fields-plan.png",
           "alt": "Four Fields ministry strategy diagram"
-        },
-        "This picture shows how the Jeevan Ki Jyoti lessons and other tools described in this book fit within a Four Fields ministry strategy."
+        }
       ]
     }
   ]
