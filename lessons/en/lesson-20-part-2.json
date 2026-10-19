@@ -18,10 +18,22 @@
               "text": "Read the Scripture twice."
             },
             {
-              "text": "Ask two questions:",
+              "text": "Ask these questions:",
               "subitems": [
-                "What did I learn from this Scripture?",
-                "How will I obey what I have learned?"
+                {
+                  "text": "What did I learn from this Scripture…",
+                  "subitems": [
+                    "…about God?",
+                    "…or about man?"
+                  ]
+                },
+                {
+                  "text": "How will I obey what I have learned…",
+                  "subitems": [
+                    "…is there a sin to avoid?",
+                    "…is there a command or example to follow?"
+                  ]
+                }
               ]
             },
             {
