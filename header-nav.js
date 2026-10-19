@@ -20,6 +20,18 @@
     menu.className = 'lesson-shortcut-menu';
     menu.hidden = true;
     menu.setAttribute('aria-label', language === 'hi' ? 'विशेष पाठ' : 'Featured lessons');
+    const bibleLink = document.createElement('a');
+    bibleLink.href = `bible.html?lang=${language}`;
+    bibleLink.classList.add('has-lesson-thumb');
+    const bibleIcon = document.createElement('img');
+    bibleIcon.className = 'lesson-thumb';
+    bibleIcon.src = 'assets/book-button.png';
+    bibleIcon.alt = '';
+    bibleIcon.setAttribute('aria-hidden', 'true');
+    const bibleLabel = document.createElement('span');
+    bibleLabel.textContent = language === 'hi' ? 'पूरी बाइबल पढ़ें' : 'Read the whole Bible';
+    bibleLink.append(bibleIcon, bibleLabel);
+    menu.append(bibleLink);
     for (const [id, number] of labels) {
       const lesson = lessons.find(item => item.id === id);
       if (!lesson) continue;
@@ -43,18 +55,6 @@
       link.append(title);
       menu.append(link);
     }
-    const bibleLink = document.createElement('a');
-    bibleLink.href = `bible.html?lang=${language}`;
-    bibleLink.classList.add('has-lesson-thumb');
-    const bibleIcon = document.createElement('img');
-    bibleIcon.className = 'lesson-thumb';
-    bibleIcon.src = 'assets/book-button.png';
-    bibleIcon.alt = '';
-    bibleIcon.setAttribute('aria-hidden', 'true');
-    const bibleLabel = document.createElement('span');
-    bibleLabel.textContent = language === 'hi' ? 'पूरी बाइबल पढ़ें' : 'Read the whole Bible';
-    bibleLink.append(bibleIcon, bibleLabel);
-    menu.append(bibleLink);
     const platform = [navigator.userAgentData?.platform, navigator.platform, navigator.userAgent].filter(Boolean).join(' ');
     const isIOS = /iPhone|iPad|iPod/i.test(platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     const isAndroid = /Android/i.test(platform);
