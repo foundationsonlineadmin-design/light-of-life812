@@ -37,7 +37,7 @@
       if (!lesson) continue;
       const link = document.createElement('a');
       link.href = `lesson.html?lang=${language}&id=${encodeURIComponent(id)}`;
-      if (id === 'jesus-story' || id === 'lesson-20-part-2' || id === 'lesson-23-part-2') {
+      if (id === 'jesus-story' || id === 'lesson-20-part-2' || id === 'lesson-23-part-2' || id === 'lesson-27-part-2' || id === 'church-essentials') {
         link.classList.add('has-lesson-thumb');
         const image = document.createElement('img');
         image.className = 'lesson-thumb';
@@ -45,7 +45,11 @@
           ? 'assets/lesson-images/hand-gospel-medium-small.png'
           : id === 'lesson-20-part-2'
             ? 'assets/lesson-images/20-2-abiding-hand-medium-small.png'
-            : 'assets/lesson-images/testimony.png';
+            : id === 'lesson-23-part-2'
+              ? 'assets/lesson-images/testimony.png'
+              : id === 'lesson-27-part-2'
+                ? 'assets/lesson-images/map-pin.png'
+                : 'assets/lesson-images/church-essentials.png';
         image.alt = '';
         image.setAttribute('aria-hidden', 'true');
         link.append(image);

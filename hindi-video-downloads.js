@@ -5,11 +5,28 @@
     const number = index + 1;
     const filename = `JKJ-${String(number).padStart(2, '0')}.mp4`;
     return {
+      lessonId: `lesson-${number}`,
       number,
       filename,
       url: `https://files.lightoflife812.com/JKJ-Hindi/${filename}`
     };
   });
+  const individualVideos = [
+    ...videos,
+    ...[
+      ['lesson-16', '16', 'JKJ-16.mp4'],
+      ['lesson-17', '17', 'JKJ-17.mp4'],
+      ['lesson-18', '18', 'JKJ-18.mp4'],
+      ['lesson-19', '19', 'JKJ-19.mp4'],
+      ['lesson-20', '20', 'JKJ-20-1.mp4'],
+      ['lesson-20-part-2', '20.2', 'JKJ-20-2.mp4']
+    ].map(([lessonId, number, filename]) => ({
+      lessonId,
+      number,
+      filename,
+      url: `https://files.lightoflife812.com/JKJ-Hindi/${filename}`
+    }))
+  ];
   const objectUrls = new Map();
 
   function openCache() {
@@ -80,10 +97,14 @@
     return downloaded;
   }
 
-  async function createLocalVideoUrl(number) {
-    const video = videos.find(item => item.number === Number(number));
+  function findIndividualVideo(lessonId) {
+    return individualVideos.find(item => item.lessonId === String(lessonId));
+  }
+
+  async function createLocalVideoUrl(lessonId) {
+    const video = findIndividualVideo(lessonId);
     if (!video) return '';
-    if (objectUrls.has(video.number)) return objectUrls.get(video.number);
+    if (objectUrls.has(video.lessonId)) return objectUrls.get(video.lessonId);
     try {
       const cache = await openCache();
       const response = await cache.match(video.url);
@@ -92,15 +113,17 @@
       const blob = receivedBlob.type.startsWith('video/') ? receivedBlob : new Blob([receivedBlob], { type: 'video/mp4' });
       if (!blob.size) return '';
       const objectUrl = URL.createObjectURL(blob);
-      objectUrls.set(video.number, objectUrl);
+      objectUrls.set(video.lessonId, objectUrl);
       return objectUrl;
     } catch {
       return '';
     }
   }
 
-  function individualDownloadMarkup(number) {
-    return `<div class="hindi-video-download-manager lesson-video-download" data-individual-video-download data-video-number="${number}"><button class="secondary-btn hindi" type="button" data-individual-video-button>${downloadButtonMarkup('वीडियो डाउनलोड करें')}</button><progress max="100" value="0" data-individual-video-progress hidden></progress><p class="hindi" role="status" aria-live="polite" data-individual-video-status></p></div>`;
+  function individualDownloadMarkup(lessonId) {
+    const video = findIndividualVideo(lessonId);
+    if (!video) return '';
+    return `<div class="hindi-video-download-manager lesson-video-download" data-individual-video-download data-video-lesson-id="${video.lessonId}"><button class="secondary-btn hindi" type="button" data-individual-video-button>${downloadButtonMarkup('वीडियो डाउनलोड करें')}</button><progress max="100" value="0" data-individual-video-progress hidden></progress><p class="hindi" role="status" aria-live="polite" data-individual-video-status></p></div>`;
   }
 
   function addDirectDownloadLink(status, url, label) {
@@ -118,8 +141,8 @@
     root.querySelectorAll('[data-individual-video-download]').forEach(manager => {
       if (manager.dataset.initialized === 'true') return;
       manager.dataset.initialized = 'true';
-      const number = Number(manager.dataset.videoNumber);
-      const video = videos.find(item => item.number === number);
+      const video = findIndividualVideo(manager.dataset.videoLessonId);
+      const number = video?.number || '';
       const button = manager.querySelector('[data-individual-video-button]');
       const progress = manager.querySelector('[data-individual-video-progress]');
       const status = manager.querySelector('[data-individual-video-status]');
@@ -157,9 +180,9 @@
             progress.hidden = true;
             if (frame) showYoutubeFallback(frame);
             await cache.delete(video.url);
-            const objectUrl = objectUrls.get(number);
+            const objectUrl = objectUrls.get(video.lessonId);
             if (objectUrl) URL.revokeObjectURL(objectUrl);
-            objectUrls.delete(number);
+            objectUrls.delete(video.lessonId);
             await paintState('डाउनलोड किया गया वीडियो हटा दिया गया है।');
             return;
           }
@@ -188,7 +211,7 @@
           await writeResponse;
           if (cacheError) throw withDownloadStage(cacheError, 'cache-write');
           progress.value = 100;
-          if (frame) await showLocalVideo(frame, number);
+          if (frame) await showLocalVideo(frame, video.lessonId);
           await paintState('वीडियो इस डिवाइस पर डाउनलोड हो गया है।');
         } catch (error) {
           console.warn(`Hindi lesson video ${number} was not cached.`, error);
@@ -201,15 +224,16 @@
     });
   }
 
-  async function showLocalVideo(frame, number) {
-    const src = await createLocalVideoUrl(number);
+  async function showLocalVideo(frame, lessonId) {
+    const src = await createLocalVideoUrl(lessonId);
     if (!src) return;
+    const video = findIndividualVideo(lessonId);
     const player = document.createElement('video');
     player.controls = true;
     player.playsInline = true;
     player.preload = 'metadata';
     player.src = src;
-    player.setAttribute('aria-label', `पाठ ${number} — स्थानीय वीडियो`);
+    player.setAttribute('aria-label', `पाठ ${video?.number || ''} — स्थानीय वीडियो`);
     frame.replaceChildren(player);
   }
 
@@ -290,9 +314,9 @@
           progress.hidden = true;
           for (const video of videos) {
             await cache.delete(video.url);
-            const objectUrl = objectUrls.get(video.number);
+            const objectUrl = objectUrls.get(video.lessonId);
             if (objectUrl) URL.revokeObjectURL(objectUrl);
-            objectUrls.delete(video.number);
+            objectUrls.delete(video.lessonId);
           }
           await paintState('डाउनलोड किए गए वीडियो हटा दिए गए हैं।');
           return;
@@ -382,6 +406,7 @@
   }
 
   window.hindiVideoDownloads = {
+    hasVideo: lessonId => !!findIndividualVideo(lessonId),
     initDownloadManager,
     createLocalVideoUrl,
     downloadButtonMarkup,
