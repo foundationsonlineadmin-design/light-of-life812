@@ -214,7 +214,7 @@
       youVersionLabel.textContent = language === 'hi' ? 'YouVersion बाइबल ऑनलाइन खोलें' : 'Open YouVersion Bible online';
     }
     youVersionLink.append(youVersionIcon, youVersionLabel);
-    menuLinks.append(youVersionLink);
+    if (isIOS || isAndroid) menuLinks.append(youVersionLink);
     menu.append(drawerHeading, menuLinks);
     button.setAttribute('aria-controls', menu.id);
     const menuScrim = document.createElement('div');

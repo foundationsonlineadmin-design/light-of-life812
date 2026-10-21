@@ -168,3 +168,11 @@ body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
 .install-float-btn .install-label{max-width:260px;line-height:1.25}
 @keyframes install-status-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.install-in-progress .install-status-icon{animation-duration:2s}}
+
+/* Center the text-size popover under the full-width header. */
+.topbar .text-size-control{position:static}
+.topbar .text-size-panel{top:calc(100% + 8px);left:50%;right:auto;transform:translateX(-50%);width:min(280px,calc(100vw - 24px))}
+
+.bible-external-link{display:inline-block;text-decoration:none;letter-spacing:normal;text-transform:none}.bible-external-link:hover{text-decoration:underline}
+
+.bible-external-link{display:inline-flex;align-items:center;gap:8px;font-size:16px;line-height:1.5;font-weight:700;letter-spacing:normal;text-transform:none;color:#82531b;text-decoration:none}.bible-external-link::before{content:"🔗";font-size:18px;line-height:1}.bible-reader-page.hindi .bible-external-link{font-family:var(--hindi-font);font-size:18px}.bible-external-link:hover{text-decoration:underline}
