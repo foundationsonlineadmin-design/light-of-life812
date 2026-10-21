@@ -36,8 +36,25 @@
         "We should not take the Lord’s Supper in an unworthy manner.",
         "Before we take the Lord’s Supper, we should examine our lives, confess any sin and make the decision to turn from it.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little, how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

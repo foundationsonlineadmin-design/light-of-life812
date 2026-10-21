@@ -42,8 +42,25 @@
         "It is out of love for God that we keep His commandments.",
         "It is important for us to abide in His love. Always remember that we are loved by Jesus.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little, how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

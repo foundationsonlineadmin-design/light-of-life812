@@ -35,8 +35,25 @@
         "Teach",
         "These scriptures reveal the final goal of God’s grace: a people from every nation made clean by Jesus, a God who dwells with us and wipes away every tear, a new creation for all who believe in Jesus. All of that, from beginning to end, is God’s gift through Jesus Christ. This is the blessed end to which God's grace has always been moving. It is the hope and promise that we share as we preach the gospel and wait for the return of Jesus.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little — how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

@@ -34,8 +34,25 @@
         "Teach",
         "This scripture teaches us how God's grace multiplies. Paul himself had previously persecuted and killed God's people, yet God graciously forgave and transformed him. As the Holy Spirit led Paul to new communities and places, more people believed the gospel through him and received God’s grace. As with God’s promise to Abraham and The Holy Spirit’s ministry through Paul, God’s grace and calling never stops with us; it reaches out through us to bless others.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little — how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

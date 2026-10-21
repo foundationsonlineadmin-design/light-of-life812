@@ -37,8 +37,25 @@
         "Baptism is symbolic of the death, burial, and resurrection of Christ.",
         "Baptism shows others that we have died to sin and have been raised with Christ to walk in a new life.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little, how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

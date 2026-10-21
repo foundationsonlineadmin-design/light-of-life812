@@ -32,8 +32,25 @@
         "Teach",
         "The ministry of Paul shows this teaching in action. First, Paul and his companions went to people who had never heard Jesus' story — like a farmer going to an empty field. Then they shared the story of Jesus — like sowing seed across that field. We cannot know who will believe, just as we cannot know which seeds will grow. Only God can make faith grow; our part is simply to share the good news. As a person's faith grows, we care for them like a young plant — this is making disciples. Finally, when the time is right, the farmer gathers the harvest — and we gather believers to form a new church. This picture helps us remember Jesus' teaching.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little — how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

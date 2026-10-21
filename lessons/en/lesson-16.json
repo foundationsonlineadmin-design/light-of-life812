@@ -26,11 +26,31 @@
         "Let’s read some verses from the Holy Scriptures, the Bible, that relate to this story.",
         "Acts 1:1–11",
         "Acts 2:1–24, 2:33, 2:36–47",
+        "Tell It as a Story",
+        "Can someone tell this story in their own words?",
+        "Practice in groups of two.",
         "Teach",
         "This scripture teaches that God's grace is poured out on all people. On the day of Pentecost, God poured out His Spirit — on young and old, on sons and daughters, even on the lowliest of servants. We could never earn or buy the Holy Spirit. He is the gift of the exalted Jesus Christ. This gift is for everyone who believes in the Lord Jesus.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little — how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

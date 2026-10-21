@@ -35,8 +35,25 @@
         "There was no one needy among them.",
         "The people of the Church shared all the things that they had.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little, how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

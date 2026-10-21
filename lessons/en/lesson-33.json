@@ -36,8 +36,25 @@
         "A pastor must meet the qualifications found in 1 Timothy 3:1-7 and Titus 1:5-10.",
         "The qualifications are focused on a man’s character, but he should be able to teach and should not be a recent convert.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little, how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

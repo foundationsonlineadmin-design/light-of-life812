@@ -13,8 +13,10 @@ function contentItem(item){
  if(typeof item==='string'&&/^ग्रूप\s+\d+$/u.test(item.trim()))return `<p class="hindi-group-label">${esc(item.trim())}</p>`;
  if(item&&typeof item==='object'){
   if(item.type==='theme')return `<div class="hand-themes lesson-inline-themes"><span class="${lang==='hi'?'hindi':''}">${esc(item.text)}</span></div>`;
+  if(item.type==='scripture-inline')return `<p>${esc(item.prefix||'')}${scriptureBadge(item.reference)}${esc(item.suffix||'')}</p>`;
   if(item.type==='image')return `<figure class="lesson-image inline-lesson-image zoomable-image ${id==='jesus-story'?'hand-gospel-image':''}" data-zoom-image tabindex="0" role="button" aria-label="${lang==='hi'?'बड़ा चित्र देखने के लिए टैप करें':'Open image larger'}"><img src="${esc(item.src)}" alt="${esc(item.alt||'')}" loading="lazy"></figure>`;
   if(item.type==='steps')return `<ol class="lesson-steps">${item.items.map(renderStepItem).join('')}</ol>`;
+  if(item.type==='question-list')return `<ul class="lesson-question-list">${item.items.map(renderStepItem).join('')}</ul>`;
   if(item.type==='checklist')return `<ul class="lesson-checklist">${item.items.map(x=>`<li><span aria-hidden="true">☐</span> ${esc(x)}</li>`).join('')}</ul>`;
  }
  const t=String(item||'').trim();

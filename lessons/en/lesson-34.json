@@ -36,8 +36,25 @@
         "(Verse 13) Rufus's mother was honored for her love and service. Paul honors her like his own mother. This shows how important mothers are in God’s church!",
         "(Verse 21) Timothy also traveled with Paul as his co-worker. He believed through the faith of his mother and grandmother. Timothy’s church planting ministry was a family legacy!",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little, how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {

@@ -36,8 +36,25 @@
         "As the Church, we should learn from God’s Word, pray, take the Lord’s Supper, help one another, and praise Jesus.",
         "If we will do like the first Church did, then we will grow and many more will be added to God’s Kingdom.",
         "Ask",
-        "What did you learn from these Scriptures?",
-        "Think a little, how will you practice what you have learned?"
+        {
+          "type": "question-list",
+          "items": [
+            {
+              "text": "What did we learn from this Scripture…",
+              "subitems": [
+                "…about God?",
+                "…or about man?"
+              ]
+            },
+            {
+              "text": "How will we obey what we have learned…",
+              "subitems": [
+                "…is there a sin to avoid?",
+                "…is there a command or example to follow?"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
