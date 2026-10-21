@@ -33,7 +33,7 @@ function languageCard(language, code) {
   return `<a class="language-card" data-language="${code}" href="${esc(languageDestination(code))}"><img src="${language.logo}" alt="${esc(language.name)} logo"><span><h3 class="${langClass(code)}">${esc(language.native)}</h3>${language.tagline ? `<p>${esc(language.tagline)}</p>` : ''}</span><span class="card-arrow">›</span></a>`;
 }
 function languagePicker() {
-  app.innerHTML = `<div class="page-head"><div><span class="eyebrow">Welcome</span><h1>Choose a language</h1><p>Choose the language you’d like to explore in.</p></div><span class="pill">2 languages available</span></div><div class="language-grid">${['hi', 'en'].map(code => languageCard(catalog[code], code)).join('')}</div>`;
+  app.innerHTML = `<div class="page-head"><div><h1>Choose a language</h1></div><span class="pill">2 languages available</span></div><div class="language-grid">${['hi', 'en'].map(code => languageCard(catalog[code], code)).join('')}</div>`;
 }
 function progressPage() {
   const lang = progressStore.getLanguage();
