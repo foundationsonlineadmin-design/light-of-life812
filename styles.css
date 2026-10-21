@@ -126,3 +126,45 @@ body{font-size:20px}
 .video-download-button-content{display:inline-flex;align-items:center;justify-content:center;gap:9px}.video-download-symbol{width:19px;height:19px;flex:0 0 19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.video-remove-symbol{display:inline-grid;place-items:center;width:19px;height:19px;flex:0 0 19px;font:700 22px/1 'DM Sans',sans-serif}
 
 .lesson-next-icon{display:block;width:72px;height:72px;fill:none;stroke:var(--brown);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}.lesson-drawer nav .lesson-next-icon{width:36px;height:36px;stroke-width:3.4}@media(max-width:760px){.lesson-next-icon{width:64px;height:64px}}
+
+/* Shared four-button app footer */
+.app-footer-nav.bottom-nav{position:fixed;display:flex;align-items:center;justify-content:center;gap:clamp(6px,2vw,22px);left:0;right:0;bottom:0;z-index:8;min-height:82px;padding:7px max(12px,calc((100vw - 640px)/2)) calc(7px + env(safe-area-inset-bottom));background:#fffdf9f5;border-top:1px solid var(--line);backdrop-filter:blur(12px)}
+.app-footer-nav>a,.app-footer-nav>.footer-back-button,.app-footer-nav .lesson-shortcut{display:flex;flex:1 1 0;max-width:132px;min-width:0;height:66px;align-items:center;justify-content:center;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:15px;background:#fff;color:#76502c;text-decoration:none}
+.app-footer-nav .footer-home-link{font-size:14px;letter-spacing:normal}
+.app-footer-nav .footer-home-link .brand-mark{width:34px;height:34px;font-size:21px}
+.app-footer-nav .footer-nav-label{display:block;font-size:12px;font-weight:700;line-height:1.2;white-space:nowrap}
+.app-footer-nav .footer-back-button{font-size:23px;line-height:1}
+.app-footer-nav .lesson-shortcut{position:relative}
+.app-footer-nav .lesson-shortcut-toggle{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:15px;background:#fff}
+.app-footer-nav .lesson-shortcut-toggle img{width:28px;height:28px}
+.app-footer-nav .footer-lessons-button,.app-footer-nav .drawer-toggle{position:static;top:auto;right:auto;bottom:auto;z-index:auto;width:auto;height:66px;max-width:132px;min-width:0;flex:1 1 0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;padding:7px;border:1px solid var(--line);border-radius:15px;background:#fff;color:#76502c;box-shadow:none;font-size:24px;line-height:1}
+.app-footer-nav .drawer-toggle span{display:block;font:700 12px/1.2 'DM Sans',sans-serif;color:#76502c}
+.app-footer-nav .drawer-toggle>span:first-child{font:normal 24px/1 sans-serif;color:#76502c}
+body{padding-bottom:calc(94px + env(safe-area-inset-bottom))}
+.site-footer{margin-bottom:110px}
+.install-float-btn{position:fixed;z-index:9;left:50%;bottom:calc(92px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:8px;min-width:190px;padding:12px 22px;border:2px solid #fff;border-radius:999px;background:var(--brown);color:#fff;font-weight:700;box-shadow:0 8px 24px #2d160d44}
+.install-float-btn[hidden]{display:none!important}
+#app.language-picker-active{padding-bottom:130px}
+@media(max-width:760px){.app-footer-nav.bottom-nav{justify-content:space-around;gap:6px;min-height:78px;padding:6px 8px calc(6px + env(safe-area-inset-bottom))}.app-footer-nav>a,.app-footer-nav>.footer-back-button,.app-footer-nav .lesson-shortcut,.app-footer-nav .footer-lessons-button,.app-footer-nav .drawer-toggle{max-width:84px;height:64px}.app-footer-nav .footer-nav-label{font-size:11px}.install-float-btn{bottom:calc(88px + env(safe-area-inset-bottom));min-width:176px;padding:10px 18px}#app.language-picker-active{padding-bottom:135px}}
+
+/* The Book panel shares the Lessons drawer interaction and layout. */
+.book-drawer nav a{display:flex;align-items:center;gap:13px;min-height:64px}
+.book-drawer nav a>span:first-child{width:auto;color:var(--ink);font-size:18px;font-weight:600}
+.book-drawer nav .lesson-thumb{width:42px;height:42px;flex:0 0 42px}
+
+/* Give header controls consistent spacing and larger touch targets. */
+.topbar .top-actions{width:min(100%,620px);max-width:620px;flex:1;justify-content:space-between;gap:clamp(8px,2.5vw,24px);margin-inline:auto}
+.topbar .icon-btn,.topbar .avatar{width:48px;height:48px;flex:0 0 48px}
+.topbar .text-size-toggle{height:48px;min-width:48px;padding:0 10px;border-radius:24px;font-size:18px}
+.topbar .language-shortcut{font-size:22px}
+.topbar .qr-code-shortcut svg{width:22px;height:22px}
+.topbar .tracking-shortcut img{width:36px;height:36px}
+.topbar .text-size-panel{top:56px}
+.install-status-icon{display:inline-grid;place-items:center;width:22px;height:22px;flex:0 0 22px;font-weight:800;line-height:1}
+.install-in-progress .install-status-icon{border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:install-status-spin .8s linear infinite}
+.install-complete .install-status-icon{color:#4b8a35;font-size:24px}
+.install-in-progress{cursor:wait;opacity:.94}
+.install-unconfirmed{white-space:normal;text-align:center}
+.install-float-btn .install-label{max-width:260px;line-height:1.25}
+@keyframes install-status-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.install-in-progress .install-status-icon{animation-duration:2s}}

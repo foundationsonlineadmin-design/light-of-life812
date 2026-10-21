@@ -241,7 +241,7 @@
     const videoId = frame.dataset.youtubeVideoId;
     if (!videoId) return;
     const player = document.createElement('iframe');
-    player.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
+    player.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?cc_load_policy=0`;
     player.title = frame.dataset.youtubeTitle || 'Hindi lesson video';
     player.loading = 'lazy';
     player.referrerPolicy = 'strict-origin-when-cross-origin';

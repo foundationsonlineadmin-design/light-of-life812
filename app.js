@@ -94,24 +94,13 @@ function setInterfaceLanguage(lang, progressView) {
   const progressLink = document.querySelector('[data-nav="progress"]');
   if (homeLink) homeLink.innerHTML = `<span>⌂</span>${hi ? 'होम' : 'Home'}`;
   if (progressLink) progressLink.innerHTML = `<span>◷</span>${hi ? 'प्रगति' : 'Progress'}`;
-  const footerHome = document.querySelector('[data-footer-home]');
-  const footerDownload = document.querySelector('[data-footer-download]');
-  const footerProgress = document.querySelector('[data-footer-progress]');
-  const footerLang = progressStore.getLanguage();
-  const footerHindi = footerLang === 'hi';
-  if (footerHome) {
-    footerHome.href = `home.html?lang=${footerLang}`;
-    footerHome.innerHTML = `<span aria-hidden="true">⌂</span>${footerHindi ? 'होम' : 'Home'}`;
+  const installFloat = document.querySelector('#install-float-btn');
+  const footerHindi = progressStore.getLanguage() === 'hi';
+  if (installFloat) {
+    installFloat.hidden = progressView;
+    const label = installFloat.querySelector('span');
+    if (label) label.textContent = footerHindi ? 'ऐप डाउनलोड करें' : 'Download App';
   }
-  if (footerDownload) {
-    footerDownload.href = `home.html?lang=${footerLang}#install-instructions`;
-    footerDownload.querySelector('.download-nav-text').textContent = footerHindi ? 'ऐप डाउनलोड करें' : 'Download App';
-  }
-  if (footerProgress) {
-    footerProgress.href = `index.html?lang=${footerLang}#progress`;
-    footerProgress.innerHTML = `<span aria-hidden="true">◷</span>${footerHindi ? 'प्रगति' : 'Progress'}`;
-  }
-  if (nav) nav.hidden = progressView;
   document.querySelector('.language-shortcut')?.setAttribute('aria-label', hi ? 'भाषा चुनें' : 'Choose language');
   document.querySelector('.tracking-shortcut')?.setAttribute('aria-label', hi ? 'समूह की प्रगति' : 'Group progress');
   document.querySelector('#share-btn')?.setAttribute('aria-label', hi ? 'पेज साझा करें' : 'Share this page');
@@ -144,3 +133,5 @@ function render() {
 }
 window.addEventListener('hashchange', render);
 render();
+
+document.querySelector('#install-float-btn')?.addEventListener('click', () => window.startInstallFlow?.());

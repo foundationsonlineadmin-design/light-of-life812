@@ -1,4 +1,52 @@
 let deferredInstall = null;
+let installAttemptInFlight = false;
+let installCompleted = false;
+let installConfirmationTimer = null;
+
+function installMessages() {
+  const hindi = new URLSearchParams(location.search).get('lang') === 'hi' || document.documentElement.lang === 'hi';
+  return hindi
+    ? { installing: 'इंस्टॉल हो रहा है…', installed: 'इंस्टॉल हो गया · होम स्क्रीन पर देखें', unconfirmed: 'होम स्क्रीन पर ऐप देखें', download: 'ऐप डाउनलोड करें' }
+    : { installing: 'Installing…', installed: 'Installed · find it on your home screen', unconfirmed: 'Check your home screen for the app', download: 'Download App' };
+}
+
+function setInstallButtonState(state) {
+  const messages = installMessages();
+  const buttons = [...document.querySelectorAll('#install-float-btn, #install-guide-btn')];
+  for (const button of buttons) {
+    if (!button.dataset.installLabel) {
+      button.dataset.installLabel = button.textContent.replace(/↓/g, '').trim() || messages.download;
+    }
+    const indicator = document.createElement('span');
+    indicator.className = 'install-status-icon';
+    indicator.setAttribute('aria-hidden', 'true');
+    let label = button.dataset.installLabel;
+    button.classList.remove('install-in-progress', 'install-complete', 'install-unconfirmed');
+    button.disabled = false;
+    if (state === 'installing') {
+      button.classList.add('install-in-progress');
+      indicator.textContent = '';
+      label = messages.installing;
+      button.disabled = true;
+    } else if (state === 'installed') {
+      button.classList.add('install-complete');
+      indicator.textContent = '✓';
+      label = messages.installed;
+      button.disabled = true;
+    } else if (state === 'unconfirmed') {
+      button.classList.add('install-unconfirmed');
+      label = messages.unconfirmed;
+    } else {
+      indicator.textContent = '↓';
+    }
+    const labelElement = document.createElement('span');
+    labelElement.className = 'install-label';
+    labelElement.textContent = label;
+    button.replaceChildren(indicator, labelElement);
+    button.setAttribute('aria-live', 'polite');
+    button.setAttribute('aria-label', label);
+  }
+}
 
 function installPlatform() {
   const ua = navigator.userAgent || '';
@@ -25,12 +73,24 @@ function openInstallGuidance() {
 }
 
 async function startInstallFlow() {
+  if (installAttemptInFlight) return;
   if (deferredInstall) {
     const prompt = deferredInstall;
     deferredInstall = null;
     try {
       await prompt.prompt();
       const choice = await prompt.userChoice;
+      if (choice?.outcome === 'accepted') {
+        if (installCompleted) return;
+        installAttemptInFlight = true;
+        setInstallButtonState('installing');
+        clearTimeout(installConfirmationTimer);
+        installConfirmationTimer = setTimeout(() => {
+          if (!installAttemptInFlight) return;
+          installAttemptInFlight = false;
+          setInstallButtonState('unconfirmed');
+        }, 30000);
+      }
     } catch {
       openInstallGuidance();
     }
@@ -48,7 +108,11 @@ window.addEventListener('beforeinstallprompt', event => {
 });
 
 window.addEventListener('appinstalled', () => {
+  installCompleted = true;
   deferredInstall = null;
+  installAttemptInFlight = false;
+  clearTimeout(installConfirmationTimer);
+  setInstallButtonState('installed');
 });
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
